@@ -199,7 +199,7 @@ public class Character : MonoBehaviour
                 if (!IsCovered)
                 {
                     crouchInput = value;
-                    animator.SetFloat("InputCrouch", value);
+                    if (animator != null) animator.SetFloat("InputCrouch", value);
                 }
 
                 if (crouchInput < 0)
@@ -221,8 +221,11 @@ public class Character : MonoBehaviour
         set
         {
             walkSpeed = value;
-            if (rootMotion) animator.SetFloat("WalkSpeed", value);
-            else animator.SetFloat("WalkSpeed", 1f);
+            if (animator != null)
+            {
+                if (rootMotion) animator.SetFloat("WalkSpeed", value);
+                else animator.SetFloat("WalkSpeed", 1f);
+            }
         }
     }
 
@@ -232,8 +235,11 @@ public class Character : MonoBehaviour
         set
         {
             runSpeed = value;
-            if (rootMotion) animator.SetFloat("RunSpeed", value);
-            else animator.SetFloat("RunSpeed", 1f);
+            if (animator != null)
+            {
+                if (rootMotion) animator.SetFloat("RunSpeed", value);
+                else animator.SetFloat("RunSpeed", 1f);
+            }
         }
     }
 
@@ -243,8 +249,11 @@ public class Character : MonoBehaviour
         set
         {
             pushSpeed = value;
-            if (rootMotion) animator.SetFloat("PushSpeed", value);
-            else animator.SetFloat("PushSpeed", 1f);
+            if (animator != null)
+            {
+                if (rootMotion) animator.SetFloat("PushSpeed", value);
+                else animator.SetFloat("PushSpeed", 1f);
+            }
         }
     }
 
@@ -254,8 +263,11 @@ public class Character : MonoBehaviour
         set
         {
             crouchSpeed = value;
-            if (rootMotion) animator.SetFloat("CrouchSpeed", value);
-            else animator.SetFloat("CrouchSpeed", 1f);
+            if (animator != null)
+            {
+                if (rootMotion) animator.SetFloat("CrouchSpeed", value);
+                else animator.SetFloat("CrouchSpeed", 1f);
+            }
         }
     }
 
