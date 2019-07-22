@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Animator))]
 public class Character : MonoBehaviour
 {
     private Animator animator;
@@ -258,6 +257,11 @@ public class Character : MonoBehaviour
             if (rootMotion) animator.SetFloat("CrouchSpeed", value);
             else animator.SetFloat("CrouchSpeed", 1f);
         }
+    }
+
+    public void OnAnimatorMove()
+    {
+        if (animator != null) transform.position += animator.deltaPosition;
     }
 
     public void TriggerJump()
