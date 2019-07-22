@@ -37,21 +37,22 @@ public class TrackedImageInfoManager : MonoBehaviour
         {
             // tracked image for level1
             case "FurtwangenBack2":
+                level2.gameObject.SetActive(false);
                 level1.transform.position = trackedImage.transform.position;
                 level1.transform.rotation = trackedImage.transform.rotation;
                 if (!level1.gameObject.activeSelf)
                 {
-                    level2.gameObject.SetActive(false);
+
                     level1.gameObject.SetActive(true);
                 }
                 break;
             // tracked image for level2
             case "FurtwangenFront1":
+                level1.gameObject.SetActive(false);
                 level2.transform.position = trackedImage.transform.position;
                 level2.transform.rotation = trackedImage.transform.rotation;
                 if (!level2.gameObject.activeSelf)
                 {
-                    level1.gameObject.SetActive(false);
                     level2.gameObject.SetActive(true);
                 }
                 break;
