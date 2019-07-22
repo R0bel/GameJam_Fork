@@ -27,6 +27,7 @@ public class TrackedImageInfoManager : MonoBehaviour, IManagedBehaviour
     {
         gameManager = _manager;
         m_TrackedImageManager.trackedImagesChanged += OnTrackedImagesChanged;
+        // levels[0].StartLevel();
     }
 
     void OnDisable()
@@ -42,6 +43,8 @@ public class TrackedImageInfoManager : MonoBehaviour, IManagedBehaviour
         }
     }
 
+    public ARLevel ActiveLevel { get; private set; }
+
     void UpdateTransform(ARTrackedImage trackedImage)
     {
         foreach (ARLevel level in levels)
@@ -49,16 +52,23 @@ public class TrackedImageInfoManager : MonoBehaviour, IManagedBehaviour
             if (level == null) continue;
             if (trackedImage.referenceImage.name == level.ImageName)
             {
-                // set all level inactive
-                Array.ForEach(levels, l => l.gameObject.SetActive(false));
 
                 // set level active
                 level.gameObject.transform.position = trackedImage.transform.position;
                 level.gameObject.transform.rotation = trackedImage.transform.rotation;
-                if (!level.gameObject.activeSelf) level.gameObject.SetActive(true);
 
-                // start ARLevel
-                level.StartLevel();
+                if (level != ActiveLevel)
+                {
+                    ActiveLevel = level;
+                    Debug.Log("Start Level!");
+
+                    // set all level inactive
+                    Array.ForEach(levels, l => l.gameObject.SetActive(false));
+                    if (!level.gameObject.activeSelf) level.gameObject.SetActive(true);
+
+                    // start ARLevel
+                    level.StartLevel();
+                }                
                 break;
             }
         }

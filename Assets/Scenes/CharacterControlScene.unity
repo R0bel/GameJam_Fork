@@ -97,7 +97,7 @@ LightmapSettings:
     m_ShowResolutionOverlay: 1
     m_ExportTrainingData: 0
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -376,20 +376,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2892266999161234519, guid: bef772a1de2d276428adba353e79a884,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bef772a1de2d276428adba353e79a884, type: 3}
---- !u!114 &6851864596575771939 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7297519821512960214, guid: bef772a1de2d276428adba353e79a884,
-    type: 3}
-  m_PrefabInstance: {fileID: 4189662660238123658}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2762ab13813f61043b85937a2c3afeae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &8449297184656261697
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -457,6 +450,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8449297184580227172, guid: 33b62fc1ba2293e44b4986b18ce420ad,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8449297183232620115, guid: 33b62fc1ba2293e44b4986b18ce420ad,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -520,7 +518,7 @@ PrefabInstance:
         type: 3}
       propertyPath: character
       value: 
-      objectReference: {fileID: 6851864596575771939}
+      objectReference: {fileID: 0}
     - target: {fileID: 5136879998787759877, guid: 6bbf179115ee8ce49ac797628500fbdd,
         type: 3}
       propertyPath: joystick

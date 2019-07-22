@@ -10,7 +10,6 @@ public class RandomIdleStateMachine : StateMachineBehaviour
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        Debug.Log("+");
         randomState = stateArray[Random.Range(0, stateArray.Length)];
         animator.SetInteger("RandomIdleState", randomState);
     }

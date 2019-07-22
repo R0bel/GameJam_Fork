@@ -71,7 +71,7 @@ public class CharacterControlScene : SceneMonoBehaviour
 
     private void Update()
     {
-        
+        Debug.Log("activeChar is: " + activeChar);
 
         if (gameManager != null && activeChar != null)
         {
