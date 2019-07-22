@@ -5,13 +5,6 @@ using UnityEngine.UI;
 using UnityEngine.XR.ARSubsystems;
 using UnityEngine.XR.ARFoundation;
 
-[Serializable]
-public struct ARLevel
-{
-    public string name;
-    public GameObject levelObj;
-}
-
 /// This component listens for images detected by the <c>XRImageTrackingSubsystem</c>
 /// and overlays some information as well as the source Texture2D on top of the
 /// detected image.
@@ -53,15 +46,19 @@ public class TrackedImageInfoManager : MonoBehaviour, IManagedBehaviour
     {
         foreach (ARLevel level in levels)
         {
-            if (trackedImage.referenceImage.name == level.name)
+            if (level == null) continue;
+            if (trackedImage.referenceImage.name == level.ImageName)
             {
                 // set all level inactive
-                Array.ForEach(levels, l => l.levelObj.SetActive(false));
+                Array.ForEach(levels, l => l.gameObject.SetActive(false));
 
                 // set level active
-                level.levelObj.transform.position = trackedImage.transform.position;
-                level.levelObj.transform.rotation = trackedImage.transform.rotation;
-                if (!level.levelObj.activeSelf) level.levelObj.SetActive(true);
+                level.gameObject.transform.position = trackedImage.transform.position;
+                level.gameObject.transform.rotation = trackedImage.transform.rotation;
+                if (!level.gameObject.activeSelf) level.gameObject.SetActive(true);
+
+                // start ARLevel
+                level.StartLevel();
                 break;
             }
         }

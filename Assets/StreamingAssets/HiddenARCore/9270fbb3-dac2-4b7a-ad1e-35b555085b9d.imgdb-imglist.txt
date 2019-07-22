@@ -1,0 +1,2 @@
+6777d207f4334ac6b2cf498f425642b7|Assets/ImageTracking/Images/furtwangen_back_2.jpg|0.0541164
+9c6b80cd34c043818e92e9bf460c4798|Assets/ImageTracking/Images/furtwangen_front_1.jpg|0.085

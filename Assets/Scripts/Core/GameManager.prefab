@@ -623,27 +623,7 @@ PrefabInstance:
     - target: {fileID: 4797193395401751550, guid: 2956a356f770399429db87fabe7bb753,
         type: 3}
       propertyPath: levels.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4797193395401751550, guid: 2956a356f770399429db87fabe7bb753,
-        type: 3}
-      propertyPath: levels.Array.data[0].name
-      value: FurtwangenBack2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4797193395401751550, guid: 2956a356f770399429db87fabe7bb753,
-        type: 3}
-      propertyPath: levels.Array.data[1].name
-      value: FurtwangenFront1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4797193395401751550, guid: 2956a356f770399429db87fabe7bb753,
-        type: 3}
-      propertyPath: level1.name
-      value: FurtwangenBack2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4797193395401751550, guid: 2956a356f770399429db87fabe7bb753,
-        type: 3}
-      propertyPath: level2.name
-      value: FurtwangenFront1
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2956a356f770399429db87fabe7bb753, type: 3}

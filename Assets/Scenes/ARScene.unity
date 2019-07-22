@@ -188,21 +188,9 @@ PrefabInstance:
       value: GameManager
       objectReference: {fileID: 0}
     - target: {fileID: 203850100, guid: 6bbf179115ee8ce49ac797628500fbdd, type: 3}
-      propertyPath: levels.Array.data[0].levelObj
+      propertyPath: levels.Array.data[0]
       value: 
-      objectReference: {fileID: 1563491173}
-    - target: {fileID: 203850100, guid: 6bbf179115ee8ce49ac797628500fbdd, type: 3}
-      propertyPath: levels.Array.data[1].levelObj
-      value: 
-      objectReference: {fileID: 1950878871}
-    - target: {fileID: 203850100, guid: 6bbf179115ee8ce49ac797628500fbdd, type: 3}
-      propertyPath: level1.levelObj
-      value: 
-      objectReference: {fileID: 1563491173}
-    - target: {fileID: 203850100, guid: 6bbf179115ee8ce49ac797628500fbdd, type: 3}
-      propertyPath: level2.levelObj
-      value: 
-      objectReference: {fileID: 1950878871}
+      objectReference: {fileID: 1950878872}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6bbf179115ee8ce49ac797628500fbdd, type: 3}
 --- !u!1 &1527282481
@@ -488,7 +476,7 @@ PrefabInstance:
     - target: {fileID: 4189662658696137869, guid: bef772a1de2d276428adba353e79a884,
         type: 3}
       propertyPath: m_Name
-      value: Level
+      value: Level1
       objectReference: {fileID: 0}
     - target: {fileID: 4189662658696137869, guid: bef772a1de2d276428adba353e79a884,
         type: 3}
@@ -550,29 +538,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4189662658696137858, guid: bef772a1de2d276428adba353e79a884,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4189662658696137858, guid: bef772a1de2d276428adba353e79a884,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4189662658696137858, guid: bef772a1de2d276428adba353e79a884,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bef772a1de2d276428adba353e79a884, type: 3}
---- !u!1 &1950878871 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4189662658696137869, guid: bef772a1de2d276428adba353e79a884,
+--- !u!114 &1950878872 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4429342422293363374, guid: bef772a1de2d276428adba353e79a884,
     type: 3}
   m_PrefabInstance: {fileID: 1950878870}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5582b445605b16419cb817a747277c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &726281802434029061
 MonoBehaviour:
   m_ObjectHideFlags: 0
