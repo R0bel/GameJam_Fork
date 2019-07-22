@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     public AudioManager Audio { get; private set; }
     public CharacterManager Char { get; private set; }
 
+    public TrackedImageInfoManager AR { get; private set; }
+
     private List<MonoBehaviour> managedBehaviours;
 
     void Awake()
@@ -24,6 +26,7 @@ public class GameManager : MonoBehaviour
         Events = GetComponentInChildren<EventManager>();
         Audio = GetComponentInChildren<AudioManager>();
         Char = GetComponentInChildren<CharacterManager>();
+        AR = GetComponentInChildren<TrackedImageInfoManager>();
 
         managedBehaviours = new List<MonoBehaviour>();
         Debug.LogWarning("GameManager initialized");
