@@ -6,13 +6,21 @@ using System;
 [Serializable]
 public class Level1 : ARLevel
 {
+
     [SerializeField]
     private Character character;
 
     protected override void OnLevelStart()
     {
         Debug.Log("Started Level: " + gameObject.name);
-        //character.gameObject.SetActive(true);
+        gameManager = GameManager.Instance;
+
+        // connect to Photon Networking
+        gameManager.Network.ConnectToMasterserver();
+
+
+
+
         Character currentChar = Instantiate(character, Vector3.zero, Quaternion.identity, transform);
         gameManager.Char.ActiveCharacter = currentChar;
     }

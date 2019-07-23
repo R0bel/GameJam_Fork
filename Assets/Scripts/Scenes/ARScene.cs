@@ -1,15 +1,53 @@
-﻿using System.Collections;
+﻿using Photon.Realtime;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+
+public enum UIView
+{
+    CREATE_ROOM,
+    INSIDE_ROOM,
+    IN_GAME
+}
 
 public class ARScene : SceneMonoBehaviour
 {
     private GameManager gameManager;
     private Character activeChar;
 
-    [Header("Character UI Control")]
+    [Header("Network Controls")]
+    [SerializeField]
+    private GameObject networkViewObj;
+    [SerializeField]
+    private GameObject networkCreateRoomViewObj;
+
+    [Space(10f)]
+    [SerializeField]
+    private InputField playerNameInput;
+    [SerializeField]
+    private InputField roomNameInput;
+    [SerializeField]
+    private Button createRoomBtn;
+    [SerializeField]
+    private Button joinRoomBtn;
+    [SerializeField]
+    private Text statusText;
+
+    [Space(5f)]
+    [SerializeField]
+    private GameObject networkRoomViewObj;
+    [SerializeField]
+    private Text roomNameText;
+    [SerializeField]
+    private Text playerListText;
+
+    [Space(5f)]
+    [SerializeField]
+    private GameObject inGameView;
+
+    [Space(10f)]
     [SerializeField]
     private Joystick joystick;
     [SerializeField]
@@ -32,13 +70,95 @@ public class ARScene : SceneMonoBehaviour
         jumpBtn = jumpBtnObj.GetComponent<Button>();
         jumpBtnImg = jumpBtnObj.GetComponent<Image>();
 
+        createRoomBtn.interactable = false;
+        joinRoomBtn.interactable = false;
+
         gameManager.Events.CharacterChanged += OnCharacterUpdate;
         gameManager.Events.LevelStarted += OnLevelStarted;
+        gameManager.Events.ConnectedToMaster += OnConnectedToMasterServer;
+        gameManager.Events.JoinedRoom += OnJoinedRoom;
     }
 
     private void OnLevelStarted(ARLevel _level)
     {
+        if (gameManager.Network.IsConnectedAndReady && gameManager.Network.InRoom)
+        {
+            ActivateUIView(UIView.INSIDE_ROOM);
+        } else
+        {
+            ActivateUIView(UIView.CREATE_ROOM);
+        }        
+    }
+
+    private void OnConnectedToMasterServer()
+    {
+        statusText.text = "Connected to Photon Masterserver";
+        createRoomBtn.interactable = true;
+        joinRoomBtn.interactable = true;
+    }
+
+    private void OnJoinedRoom(Room _room)
+    {
+        statusText.text = "Joined room: " + _room.Name;
+        ActivateUIView(UIView.INSIDE_ROOM);
+        roomNameText.text = _room.Name;
+
+        foreach(Player player in gameManager.Network.RoomPlayers)
+        {
+            playerListText.text = "- " + player.NickName + "\n";
+        }
         
+    }
+
+    #region ButtonCallbacks
+    public void OnCreateRoomBtn()
+    {
+        if (roomNameInput.text != string.Empty && playerNameInput.text != string.Empty && gameManager.Network.IsConnectedAndReady)
+        {
+            gameManager.Network.Nickname = playerNameInput.text;
+            gameManager.Network.CreateRoom(roomNameInput.text);
+        }
+            
+    }
+
+    public void OnJoinRoomBtn()
+    {
+        if (roomNameInput.text != string.Empty && playerNameInput.text != string.Empty && gameManager.Network.IsConnectedAndReady)
+        {
+            gameManager.Network.Nickname = playerNameInput.text;
+            gameManager.Network.JoinRoom(roomNameInput.text);
+        }
+
+    }
+    #endregion
+
+    /// <summary>
+    /// Activate UI View
+    /// </summary>
+    /// <param name="_type"></param>
+    public void ActivateUIView(UIView _type)
+    {
+        switch(_type)
+        {
+            case UIView.CREATE_ROOM:
+                networkViewObj.SetActive(true);
+                networkCreateRoomViewObj.SetActive(true);
+                networkRoomViewObj.SetActive(false);
+                inGameView.SetActive(false);
+                break;
+            case UIView.INSIDE_ROOM:
+                networkViewObj.SetActive(true);
+                networkCreateRoomViewObj.SetActive(false);
+                networkRoomViewObj.SetActive(true);
+                inGameView.SetActive(false);
+                break;
+            case UIView.IN_GAME:
+                networkViewObj.SetActive(false);
+                networkCreateRoomViewObj.SetActive(false);
+                networkRoomViewObj.SetActive(false);
+                inGameView.SetActive(true);
+                break;
+        }
     }
 
     public void OnJumpTriggered()
