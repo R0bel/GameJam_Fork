@@ -110,7 +110,19 @@ public class ARScene : SceneMonoBehaviour
         {
             playerListText.text = "- " + player.NickName + "\n";
         }
-        
+
+        gameManager.Events.RoomCustomPropertiesChanged += OnRoomPropertiesChanged;
+
+
+    }
+
+    private void OnRoomPropertiesChanged(ExitGames.Client.Photon.Hashtable _changedProps)
+    {
+        if ((bool)PhotonNetwork.CurrentRoom.CustomProperties["GameStarted"] == true)
+        {
+            ActivateUIView(UIView.IN_GAME);
+            if (currentLevel != null) currentLevel.SpawnCharacter();
+        }
     }
 
     #region ButtonCallbacks
