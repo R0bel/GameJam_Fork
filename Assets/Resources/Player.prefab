@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 6851864596575771939}
   - component: {fileID: 4098552448885447241}
   - component: {fileID: 2977110513991107808}
+  - component: {fileID: 3131286207133736281}
+  - component: {fileID: 822752152344457513}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -91,6 +93,44 @@ CapsuleCollider:
   m_Height: 1.887737
   m_Direction: 1
   m_Center: {x: 0, y: 0.94477355, z: 0.07549977}
+--- !u!114 &3131286207133736281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 33745028156829558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 822752152344457513}
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &822752152344457513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 33745028156829558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64179f3720bbfe947b7724caa67b7c1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizeVelocity: 1
+  m_SynchronizeAngularVelocity: 0
+  m_TeleportEnabled: 0
+  m_TeleportIfDistanceGreaterThan: 3
 --- !u!114 &337751209995566102
 MonoBehaviour:
   m_ObjectHideFlags: 0

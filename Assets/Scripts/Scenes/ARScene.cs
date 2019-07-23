@@ -1,4 +1,5 @@
-﻿using Photon.Realtime;
+﻿using Photon.Pun;
+using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,6 +17,7 @@ public class ARScene : SceneMonoBehaviour
 {
     private GameManager gameManager;
     private Character activeChar;
+    private ARLevel currentLevel;
 
     [Header("Network Controls")]
     [SerializeField]
@@ -81,6 +83,7 @@ public class ARScene : SceneMonoBehaviour
 
     private void OnLevelStarted(ARLevel _level)
     {
+        currentLevel = _level;
         if (gameManager.Network.IsConnectedAndReady && gameManager.Network.InRoom)
         {
             ActivateUIView(UIView.INSIDE_ROOM);
@@ -131,6 +134,20 @@ public class ARScene : SceneMonoBehaviour
 
     }
     #endregion
+
+    public void StartGame()
+    {
+        if (gameManager.Network.InRoom
+            && gameManager.Network.IsMasterClient
+            // && gameManager.Network.RoomPlayers.Length == PhotonNetwork.CurrentRoom.MaxPlayers
+            )
+        {
+            // Set room gameStarted property
+            PhotonNetwork.CurrentRoom.CustomProperties["GameStarted"] = true;
+            ActivateUIView(UIView.IN_GAME);
+            if (currentLevel != null) currentLevel.SpawnCharacter();
+        }
+    }
 
     /// <summary>
     /// Activate UI View
