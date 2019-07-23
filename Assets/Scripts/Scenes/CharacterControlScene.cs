@@ -97,9 +97,4 @@ public class CharacterControlScene : SceneMonoBehaviour
             activeChar.SetMoveInput(verticalInput, horizontalInput, inputActive);
         }
     }
-
-    private void OnDisable()
-    {
-        gameManager.Events.CharacterChanged -= OnCharacterUpdate;
-    }
 }
