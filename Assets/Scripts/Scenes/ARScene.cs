@@ -33,6 +33,12 @@ public class ARScene : SceneMonoBehaviour
         jumpBtnImg = jumpBtnObj.GetComponent<Image>();
 
         gameManager.Events.CharacterChanged += OnCharacterUpdate;
+        gameManager.Events.LevelStarted += OnLevelStarted;
+    }
+
+    private void OnLevelStarted(ARLevel _level)
+    {
+        
     }
 
     public void OnJumpTriggered()

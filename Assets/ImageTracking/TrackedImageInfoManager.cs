@@ -29,8 +29,12 @@ public class TrackedImageInfoManager : MonoBehaviour, IManagedBehaviour
     public void OnStart(GameManager _manager)
     {
         gameManager = _manager;
-        m_TrackedImageManager.trackedImagesChanged += OnTrackedImagesChanged;
+        gameManager.Events.StartupFinished += OnGameStartupFinished;
+    }
 
+    private void OnGameStartupFinished()
+    {
+        m_TrackedImageManager.trackedImagesChanged += OnTrackedImagesChanged;
 #if UNITY_EDITOR
         if (debugImageFound) ActivateLevel(levels[0]);
 #endif
