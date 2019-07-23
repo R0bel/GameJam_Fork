@@ -118,11 +118,8 @@ public class ARScene : SceneMonoBehaviour
 
     private void OnRoomPropertiesChanged(ExitGames.Client.Photon.Hashtable _changedProps)
     {
-        if ((bool)PhotonNetwork.CurrentRoom.CustomProperties["GameStarted"] == true)
-        {
-            ActivateUIView(UIView.IN_GAME);
-            if (currentLevel != null) currentLevel.SpawnCharacter();
-        }
+        ActivateUIView(UIView.IN_GAME);
+        if (currentLevel != null) currentLevel.SpawnCharacter();
     }
 
     #region ButtonCallbacks
