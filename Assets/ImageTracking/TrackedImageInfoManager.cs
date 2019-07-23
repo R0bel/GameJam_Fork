@@ -10,20 +10,24 @@ using UnityEngine.XR.ARFoundation;
 /// detected image.
 /// </summary>
 [RequireComponent(typeof(ARTrackedImageManager))]
-public class TrackedImageInfoManager : MonoBehaviour
+public class TrackedImageInfoManager : MonoBehaviour, IManagedBehaviour
 {
-    public GameObject level1;
-    public GameObject level2;
-    ARTrackedImageManager m_TrackedImageManager;
+    GameManager gameManager;
+
+    [SerializeField]
+    private ARLevel[] levels = new ARLevel[2];
+    private ARTrackedImageManager m_TrackedImageManager;
 
     void Awake()
     {
         m_TrackedImageManager = GetComponent<ARTrackedImageManager>();
     }
 
-    private void Start()
+    public void OnStart(GameManager _manager)
     {
+        gameManager = _manager;
         m_TrackedImageManager.trackedImagesChanged += OnTrackedImagesChanged;
+        // levels[0].StartLevel();
     }
 
     void OnDisable()
@@ -31,37 +35,48 @@ public class TrackedImageInfoManager : MonoBehaviour
         m_TrackedImageManager.trackedImagesChanged -= OnTrackedImagesChanged;
     }
 
+    public ARLevel[] ARLevels
+    {
+        get
+        {
+            return levels;
+        }
+    }
+
+    public ARLevel ActiveLevel { get; private set; }
+
     void UpdateTransform(ARTrackedImage trackedImage)
     {
-        switch (trackedImage.referenceImage.name)
+        foreach (ARLevel level in levels)
         {
-            // tracked image for level1
-            case "FurtwangenBack2":
-                level2.gameObject.SetActive(false);
-                level1.transform.position = trackedImage.transform.position;
-                level1.transform.rotation = trackedImage.transform.rotation;
-                if (!level1.gameObject.activeSelf)
-                {
+            if (level == null) continue;
+            if (trackedImage.referenceImage.name == level.ImageName)
+            {
 
-                    level1.gameObject.SetActive(true);
-                }
-                break;
-            // tracked image for level2
-            case "FurtwangenFront1":
-                level1.gameObject.SetActive(false);
-                level2.transform.position = trackedImage.transform.position;
-                level2.transform.rotation = trackedImage.transform.rotation;
-                if (!level2.gameObject.activeSelf)
+                // set level active
+                level.gameObject.transform.position = trackedImage.transform.position;
+                level.gameObject.transform.rotation = trackedImage.transform.rotation;
+
+                if (level != ActiveLevel)
                 {
-                    level2.gameObject.SetActive(true);
-                }
+                    ActiveLevel = level;
+                    Debug.Log("Start Level!");
+
+                    // set all level inactive
+                    Array.ForEach(levels, l => l.gameObject.SetActive(false));
+                    if (!level.gameObject.activeSelf) level.gameObject.SetActive(true);
+
+                    // start ARLevel
+                    level.StartLevel();
+                }                
                 break;
+            }
         }
-
     }
 
     void OnTrackedImagesChanged(ARTrackedImagesChangedEventArgs eventArgs)
     {
+        gameManager.Events.OnTrackedImagesChanged(eventArgs);
         foreach (var trackedImage in eventArgs.added)
         {
             UpdateTransform(trackedImage);
@@ -78,6 +93,5 @@ public class TrackedImageInfoManager : MonoBehaviour
     {
         Debug.Log("trackedImage: " + trackedImage.transform);
         Debug.Log("referenceImage: " + trackedImage.referenceImage.name);
-        Debug.Log("levelObj position: " + level1.transform.position);
     }
 }
