@@ -34,7 +34,7 @@ public class AgentAnimMove : MonoBehaviour
         if (Time.deltaTime > 1e-5f)
             velocity = smoothDeltaPosition / Time.deltaTime;
 
-        bool shouldMove = agent.remainingDistance > agent.radius;
+        bool shouldMove = agent.remainingDistance > agent.radius - agent.stoppingDistance;
 
         // Update animation parameters
         /*
@@ -44,8 +44,8 @@ public class AgentAnimMove : MonoBehaviour
         */
         anim.SetBool("OnWalk", shouldMove);
         anim.SetBool("Running", true);
-        anim.SetFloat("RunSpeed", agent.speed);
-        anim.SetFloat("InputMove", agent.velocity.x + agent.velocity.x);
+        anim.SetFloat("RunSpeed", agent.velocity.magnitude/2);
+        anim.SetFloat("InputMove", agent.velocity.sqrMagnitude);
     }
 
     public void OnAnimatorMove()
