@@ -71,9 +71,13 @@ public class CharacterControlScene : SceneMonoBehaviour
 
     private void Update()
     {
+        if(gameManager != null && activeChar == null)
+        {
+            activeChar = gameManager.Char.ActiveCharacter;
+        }
         Debug.Log("activeChar is: " + activeChar);
 
-        if (gameManager != null && activeChar != null && activeChar.isActiveAndEnabled)
+        if (activeChar != null && activeChar.isActiveAndEnabled)
         {
             if (Input.GetKeyDown(KeyCode.Space)) OnJumpTriggered();
             if (Input.GetKeyDown(KeyCode.LeftShift)) activeChar.IsRunning = !activeChar.IsRunning;

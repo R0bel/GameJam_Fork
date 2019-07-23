@@ -478,4 +478,17 @@ public class Character : MonoBehaviour
             }
         }
     }
+    /*
+    private void OnEnable()
+    {
+        GameManager.Instance.Char.ActiveCharacter = this;
+        Debug.Log("enable player  XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+    }
+
+    private void OnDisable()
+    {
+        GameManager.Instance.Char.ActiveCharacter = null;
+        Debug.Log("disable player XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+    }
+    */
 }
