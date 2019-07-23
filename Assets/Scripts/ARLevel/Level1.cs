@@ -12,7 +12,8 @@ public class Level1 : ARLevel
     protected override void OnLevelStart()
     {
         Debug.Log("Started Level: " + gameObject.name);
-        character.gameObject.SetActive(true);
-        gameManager.Char.ActiveCharacter = character;
+        //character.gameObject.SetActive(true);
+        Character currentChar = Instantiate(character, Vector3.zero, Quaternion.identity, transform);
+        gameManager.Char.ActiveCharacter = currentChar;
     }
 }
