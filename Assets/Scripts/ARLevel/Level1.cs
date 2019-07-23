@@ -27,7 +27,7 @@ public class Level1 : ARLevel
     {
         if (gameManager.Network.InRoom)
         {
-            GameObject currentChar = PhotonNetwork.Instantiate("Player", new Vector3(0, 0, 0), Quaternion.identity, 0);
+            GameObject currentChar = PhotonNetwork.Instantiate("Player", transform.position, Quaternion.identity, 0);
             currentChar.transform.parent = transform;
             currentChar.transform.localScale = new Vector3(1f, 1f, 1f);
             gameManager.Char.ActiveCharacter = currentChar.GetComponent<Character>();
