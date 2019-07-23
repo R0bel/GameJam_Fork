@@ -80,12 +80,12 @@ public class TrackedImageInfoManager : MonoBehaviour, IManagedBehaviour
         foreach (var trackedImage in eventArgs.added)
         {
             UpdateTransform(trackedImage);
-            Info(trackedImage);
+            // Info(trackedImage);
         }
         foreach (var trackedImage in eventArgs.updated)
         {
             UpdateTransform(trackedImage);
-            Info(trackedImage);
+            // Info(trackedImage);
         }
     }
 

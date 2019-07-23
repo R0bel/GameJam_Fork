@@ -31,6 +31,8 @@ public class CharacterControlScene : SceneMonoBehaviour
 
         jumpBtn = jumpBtnObj.GetComponent<Button>();
         jumpBtnImg = jumpBtnObj.GetComponent<Image>();
+
+        gameManager.Events.CharacterChanged += OnCharacterUpdate;
     }
 
     public void OnJumpTriggered()
@@ -69,14 +71,14 @@ public class CharacterControlScene : SceneMonoBehaviour
         jumpWaitTimeCoroutine = null;
     }
 
+    private void OnCharacterUpdate(Character _char)
+    {
+        Debug.Log("Character updated!");
+        if (gameManager != null) activeChar = _char;
+    }
+
     private void Update()
     {
-        if(gameManager != null && activeChar == null)
-        {
-            activeChar = gameManager.Char.ActiveCharacter;
-        }
-        Debug.Log("activeChar is: " + activeChar);
-
         if (activeChar != null && activeChar.isActiveAndEnabled)
         {
             if (Input.GetKeyDown(KeyCode.Space)) OnJumpTriggered();
@@ -94,5 +96,10 @@ public class CharacterControlScene : SceneMonoBehaviour
 
             activeChar.SetMoveInput(verticalInput, horizontalInput, inputActive);
         }
+    }
+
+    private void OnDisable()
+    {
+        gameManager.Events.CharacterChanged -= OnCharacterUpdate;
     }
 }

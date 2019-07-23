@@ -21,6 +21,10 @@ public class CharacterManager : MonoBehaviour, IManagedBehaviour
         }
         set
         {
+            if (character != value && gameManager != null)
+            {
+                gameManager.Events.OnCharacterChanged(value);
+            }
             character = value;
         }
     }

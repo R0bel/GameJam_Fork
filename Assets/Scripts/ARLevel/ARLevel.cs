@@ -22,10 +22,12 @@ public class ARLevel : MonoBehaviour
     public void StartLevel()
     {
         gameManager = GameManager.Instance;
-
-        // trigger level start event
-        gameManager.Events.OnARLevelStarted(this);
-        OnLevelStart();
+        if (gameManager != null)
+        {
+            // trigger level start event
+            gameManager.Events.OnARLevelStarted(this);
+            OnLevelStart();
+        }        
     }
 
     protected virtual void OnLevelStart()
