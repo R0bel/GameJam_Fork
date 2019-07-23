@@ -770,7 +770,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 726281804059477053}
+      - m_Target: {fileID: 726281804059477055}
         m_MethodName: OnJumpTriggered
         m_Mode: 1
         m_Arguments:
@@ -1225,7 +1225,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 726281804059477053}
+      - m_Target: {fileID: 726281804059477055}
         m_MethodName: OnRunBtnClicked
         m_Mode: 1
         m_Arguments:
@@ -1388,7 +1388,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 726281804059477053}
+      - m_Target: {fileID: 726281804059477055}
         m_MethodName: OnCrouchTriggered
         m_Mode: 1
         m_Arguments:
@@ -1452,22 +1452,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &726281804059477053
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 726281804059477054}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 038c7cd9dc7fc564da5fa9e54d91d52a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  joystick: {fileID: 2500216999587643532}
-  jumpBtnObj: {fileID: 726281802686413571}
-  jumpRechargeTime: 1
-  deadPoint: 0.1
 --- !u!1 &726281804059477054
 GameObject:
   m_ObjectHideFlags: 0
@@ -1477,7 +1461,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 726281804059477052}
-  - component: {fileID: 726281804059477053}
+  - component: {fileID: 726281804059477055}
   m_Layer: 0
   m_Name: SceneManager
   m_TagString: Untagged
@@ -1485,6 +1469,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &726281804059477055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 726281804059477054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5b066396d1832d4bbdc9a080f9ff7be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  joystick: {fileID: 2500216999587643532}
+  jumpBtnObj: {fileID: 726281802686413571}
+  jumpRechargeTime: 1
+  deadPoint: 0.1
 --- !u!1 &2500216999337018234
 GameObject:
   m_ObjectHideFlags: 0
