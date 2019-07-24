@@ -7,6 +7,7 @@ public class CharacterPhotonControl : MonoBehaviourPun, IPunObservable, IPunInst
 {
     private GameManager gameManager;
     private ARLevel currentLevel;
+    private Character character;
 
     private Vector3 truePosition;
     private Quaternion trueRotation;
@@ -19,6 +20,7 @@ public class CharacterPhotonControl : MonoBehaviourPun, IPunObservable, IPunInst
     private void OnEnable()
     {
         gameManager = GameManager.Instance;
+        character = GetComponent<Character>();
     }
 
     void IPunInstantiateMagicCallback.OnPhotonInstantiate(PhotonMessageInfo info)
@@ -63,19 +65,33 @@ public class CharacterPhotonControl : MonoBehaviourPun, IPunObservable, IPunInst
 
     private void Update()
     {
+        if (PhotonView.Get(this).IsMine) return;
 
         if (positionCheckCounter == 0)
         {
-            transform.localPosition = Vector3.Lerp(transform.localPosition, truePosition, Time.deltaTime * 5);
+            if (!IsNaN(truePosition)) transform.localPosition = truePosition;
         }
 
         if (positionCheckCounter > positionCheckRate)
         {
             positionCheckCounter = 1;
-            transform.localPosition = Vector3.Lerp(transform.localPosition, truePosition, Time.deltaTime * 5);
+            if (!IsNaN(truePosition)) transform.localPosition = truePosition;
         }
         positionCheckCounter++;
         // transform.localPosition = Vector3.Lerp(transform.localPosition, truePosition, Time.deltaTime * 5);
-        transform.localRotation = Quaternion.Lerp(transform.localRotation, trueRotation, Time.deltaTime * 5);
+        if (!IsNaN(trueRotation) && !IsNaN(transform.localRotation) && character != null)
+        {
+            transform.localRotation = Quaternion.Lerp(transform.localRotation, trueRotation, Time.deltaTime * character.TurnSpeed);
+        }        
+    }
+
+    private bool IsNaN(Quaternion q)
+    {
+        return float.IsNaN(q.x) || float.IsNaN(q.y) || float.IsNaN(q.z) || float.IsNaN(q.w);
+    }
+
+    private bool IsNaN(Vector3 v)
+    {
+        return float.IsNaN(v.x) || float.IsNaN(v.y) || float.IsNaN(v.z);
     }
 }

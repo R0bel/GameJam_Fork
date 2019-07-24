@@ -60,7 +60,7 @@ MonoBehaviour:
   gravity: 10
   maxVelocityChange: 10
   jumpHeight: 1
-  canJump: 1
+  canJump: 0
   canCrouch: 1
   canRun: 1
 --- !u!54 &4098552448885447241
@@ -105,7 +105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5696e06d2f96224e8332f8173088c79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 4149152653871038415}
+  positionCheckRate: 70
 --- !u!114 &7757698988791744128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -634,12 +634,6 @@ GameObject:
 --- !u!4 &6277669999659094709 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 590aff805c00a794da868c6026f31dad,
-    type: 3}
-  m_PrefabInstance: {fileID: 1325315393741863343}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &4149152653871038415 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: -6057140222963153312, guid: 590aff805c00a794da868c6026f31dad,
     type: 3}
   m_PrefabInstance: {fileID: 1325315393741863343}
   m_PrefabAsset: {fileID: 0}

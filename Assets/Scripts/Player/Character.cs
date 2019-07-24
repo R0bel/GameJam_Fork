@@ -158,6 +158,11 @@ public class Character : MonoBehaviour
         }
     }
 
+    public float TurnSpeed
+    {
+        get { return turnSpeed; }
+    }
+
     public bool IsWalking
     {
         get { return isWalking; }
