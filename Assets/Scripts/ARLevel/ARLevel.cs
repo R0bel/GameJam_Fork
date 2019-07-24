@@ -34,4 +34,9 @@ public class ARLevel : MonoBehaviour
     {
 
     }
+
+    public virtual void SpawnCharacter(string _playerModelName)
+    {
+
+    }
 }

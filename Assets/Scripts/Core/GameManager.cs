@@ -10,8 +10,8 @@ public class GameManager : MonoBehaviour
     public EventManager Events { get; private set; }
     public AudioManager Audio { get; private set; }
     public CharacterManager Char { get; private set; }
-
     public TrackedImageInfoManager AR { get; private set; }
+    public NetworkManager Network { get; private set; }
 
     private List<MonoBehaviour> managedBehaviours;
 
@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
         Audio = GetComponentInChildren<AudioManager>();
         Char = GetComponentInChildren<CharacterManager>();
         AR = GetComponentInChildren<TrackedImageInfoManager>();
+        Network = GetComponentInChildren<NetworkManager>();
 
         managedBehaviours = new List<MonoBehaviour>();
         Debug.LogWarning("GameManager initialized");
