@@ -27,7 +27,7 @@ public class Level1 : ARLevel
     {
         if (gameManager.Network.InRoom)
         {
-            GameObject currentChar = PhotonNetwork.Instantiate("Player", transform.position, Quaternion.identity, 0);
+            GameObject currentChar = PhotonNetwork.Instantiate("CowPlayer", transform.position, Quaternion.identity, 0);
             gameManager.Char.ActiveCharacter = currentChar.GetComponent<Character>();
         }
     }
