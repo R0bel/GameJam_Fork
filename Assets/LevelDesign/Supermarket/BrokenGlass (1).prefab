@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 5870442700697071933}
   - component: {fileID: 5870442700697071932}
   - component: {fileID: 5870442700697071935}
-  - component: {fileID: 5870442700697071934}
   m_Layer: 0
   m_Name: Cube (2)
   m_TagString: Untagged
@@ -2998,20 +2997,6 @@ MonoBehaviour:
   - a: 175
     b: 172
   m_SelectedVertices: 9f0000009c000000af000000ac000000
---- !u!64 &5870442700697071934
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5870442700697071928}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_Mesh: {fileID: 0}
 --- !u!1 &5870442701601445203
 GameObject:
   m_ObjectHideFlags: 0
@@ -3024,7 +3009,6 @@ GameObject:
   - component: {fileID: 5870442701601445204}
   - component: {fileID: 5870442701601445207}
   - component: {fileID: 5870442701601445206}
-  - component: {fileID: 5870442701601445201}
   m_Layer: 0
   m_Name: Cube (3)
   m_TagString: Untagged
@@ -6010,20 +5994,6 @@ MonoBehaviour:
   - a: 175
     b: 172
   m_SelectedVertices: 9f0000009c000000af000000ac000000
---- !u!64 &5870442701601445201
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5870442701601445203}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_Mesh: {fileID: 0}
 --- !u!1 &5870442701969500364
 GameObject:
   m_ObjectHideFlags: 0
@@ -6069,7 +6039,6 @@ GameObject:
   - component: {fileID: 5870442702080595320}
   - component: {fileID: 5870442702080595323}
   - component: {fileID: 5870442702080595322}
-  - component: {fileID: 5870442702080595317}
   m_Layer: 0
   m_Name: Cube (1)
   m_TagString: Untagged
@@ -9053,17 +9022,3 @@ MonoBehaviour:
   - a: 282
     b: 283
   m_SelectedVertices: 1a0100001b010000
---- !u!64 &5870442702080595317
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5870442702080595319}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_Mesh: {fileID: 0}
