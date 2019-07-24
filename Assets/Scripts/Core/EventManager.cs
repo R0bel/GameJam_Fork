@@ -26,6 +26,7 @@ public class EventManager : MonoBehaviour
     public event AudioMixerHandler MixerGroupVolumeChanged;
     public event ARHandler TrackedImagesChanged;
     public event ARLevelHandler LevelStarted;
+    public event ARLevelHandler LevelStopped;
     public event CharacterHandler CharacterChanged;
 
     public event NetworkHandler ConnectedToMaster;
@@ -61,6 +62,11 @@ public class EventManager : MonoBehaviour
     public void OnARLevelStarted(ARLevel _startedLevel)
     {
         LevelStarted?.Invoke(_startedLevel);
+    }
+
+    public void OnARLevelStopped(ARLevel _stoppedLevel)
+    {
+        LevelStopped?.Invoke(_stoppedLevel);
     }
 
     public void OnCharacterChanged(Character _char)

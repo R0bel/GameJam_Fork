@@ -83,7 +83,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5582b445605b16419cb817a747277c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  imageName: FurtwangenFront1
+  imageName: FurtwangenBack2
   character: {fileID: 6851864596575771939, guid: 3e1c49cb20f42184fb31f0bda197e988,
     type: 3}
 --- !u!1 &4189662658840705227

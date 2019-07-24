@@ -77,6 +77,7 @@ public class TrackedImageInfoManager : MonoBehaviour, IManagedBehaviour
     {
         if (_level != ActiveLevel)
         {
+            if (ActiveLevel != null) ActiveLevel.StopLevel();
             ActiveLevel = _level;
             Debug.Log("Start Level!");
 

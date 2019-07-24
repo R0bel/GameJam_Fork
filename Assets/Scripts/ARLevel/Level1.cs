@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using Photon.Pun;
+using Photon.Realtime;
 
 [Serializable]
 public class Level1 : ARLevel
@@ -14,10 +15,16 @@ public class Level1 : ARLevel
     protected override void OnLevelStart()
     {
         Debug.Log("Started Level: " + gameObject.name);
-        gameManager = GameManager.Instance;
+    }
 
-        // connect to Photon Networking
-        gameManager.Network.ConnectToMasterserver();
+    protected override void OnLevelStop()
+    {
+        if (gameManager.Char.ActiveCharacter != null)
+        {
+            PhotonView view = gameManager.Char.ActiveCharacter.GetComponent<PhotonView>();
+            PhotonNetwork.Destroy(view);
+        }
+        Debug.Log("Stopped Level: " + gameObject.name);
     }
 
     public override void SpawnCharacter(string _playerModelName)

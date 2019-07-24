@@ -65,6 +65,7 @@ public class ARScene : SceneMonoBehaviour
         gameManager.Events.LevelStarted += OnLevelStarted;
         gameManager.Events.ConnectedToMaster += OnConnectedToMasterServer;
         gameManager.Events.JoinedRoom += OnJoinedRoom;
+        gameManager.Events.LeftRoom += OnLeftRoom;
     }
 
     private void OnLevelStarted(ARLevel _level)
@@ -76,7 +77,7 @@ public class ARScene : SceneMonoBehaviour
         } else
         {
             ActivateUIView(UIView.CREATE_ROOM);
-        }        
+        }
     }
 
     private void OnConnectedToMasterServer()
@@ -90,12 +91,6 @@ public class ARScene : SceneMonoBehaviour
         statusText.text = "Joined room: " + _room.Name;
         // ActivateUIView(UIView.INSIDE_ROOM);
         roomNameText.text = _room.Name;
-
-        foreach(Player player in gameManager.Network.RoomPlayers)
-        {
-            playerListText.text = "- " + player.NickName + "\n";
-        }
-
         gameManager.Events.RoomCustomPropertiesChanged += OnRoomPropertiesChanged;
 
 
@@ -109,6 +104,11 @@ public class ARScene : SceneMonoBehaviour
             if (currentLevel != null) currentLevel.SpawnCharacter("PigPlayer");
         }
 
+    }
+
+    private void OnLeftRoom(Room _room)
+    {
+        ActivateUIView(UIView.CREATE_ROOM);
     }
 
     private void OnRoomPropertiesChanged(ExitGames.Client.Photon.Hashtable _changedProps)
@@ -140,7 +140,7 @@ public class ARScene : SceneMonoBehaviour
             )
         {
             // Set room gameStarted property
-            PhotonNetwork.CurrentRoom.CustomProperties["GameStarted"] = true;
+            // PhotonNetwork.CurrentRoom.CustomProperties["GameStarted"] = true;
             ActivateUIView(UIView.IN_GAME);
 
             if (gameManager.Network.IsMasterClient)
@@ -194,7 +194,6 @@ public class ARScene : SceneMonoBehaviour
 
     private void OnCharacterUpdate(Character _char)
     {
-        Debug.Log("Character updated!");
         if (gameManager != null) activeChar = _char;
     }
 

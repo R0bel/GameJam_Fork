@@ -83,7 +83,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IManagedBehaviour
     #endregion Properties
 
     #region PhotonMethods
-    public void ConnectToMasterserver()
+    public void ConnectToMasterServer()
     {
         if (!PhotonNetwork.IsConnected)
         {

@@ -26,11 +26,33 @@ public class ARLevel : MonoBehaviour
         {
             // trigger level start event
             gameManager.Events.OnARLevelStarted(this);
+
+            if (!gameManager.Network.IsConnectedAndReady)
+                gameManager.Network.ConnectToMasterServer();
             OnLevelStart();
         }        
     }
 
+    public void StopLevel()
+    {
+        gameManager = GameManager.Instance;
+        if (gameManager != null)
+        {
+            // trigger level stop event
+            gameManager.Events.OnARLevelStopped(this);
+
+            if (gameManager.Network.InRoom)
+                gameManager.Network.LeaveRoom();
+            OnLevelStop();
+        }        
+    }
+
     protected virtual void OnLevelStart()
+    {
+
+    }
+
+    protected virtual void OnLevelStop()
     {
 
     }
