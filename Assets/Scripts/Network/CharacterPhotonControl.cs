@@ -3,20 +3,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterPhotonControl : MonoBehaviour, IPunInstantiateMagicCallback
+public class CharacterPhotonControl : MonoBehaviourPun, IPunObservable, IPunInstantiateMagicCallback
 {
     private GameManager gameManager;
     private ARLevel currentLevel;
+    [SerializeField]
+    private Rigidbody rigid;
+
+    private Vector3 truePosition;
+    private Quaternion trueRotation;
+    private Vector3 trueSpeed;
+    private float lastRotation;
+    private float trueAngularSpeed;
 
     private void OnEnable()
     {
         gameManager = GameManager.Instance;
-    }
-
-    private void Update()
-    {
-        //PhotonView photonView = PhotonView.Get(this);
-        // photonView.RPC("UpdatePlayerPosition", RpcTarget.All, transform.localPosition);
     }
 
     void IPunInstantiateMagicCallback.OnPhotonInstantiate(PhotonMessageInfo info)
@@ -34,40 +36,34 @@ public class CharacterPhotonControl : MonoBehaviour, IPunInstantiateMagicCallbac
         }        
     }
 
-    /*
-    [PunRPC]
-    void UpdatePlayerPosition(Vector3 _position)
-    {
-        transform.localPosition = _position;
-    }
-    */
-
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    /// <summary>
+    /// this is where data is sent and received for this Component from the PUN Network.
+    /// </summary>
+    /// <param name="stream">Stream.</param>
+    /// <param name="info">Info.</param>
+    void IPunObservable.OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if (stream.IsWriting)
         {
-            /*
-            stream.SendNext(ship.transform.position);
-            stream.SendNext(ship.transform.rotation);
-            stream.SendNext(Rb.velocity);
-            */
-
+            if (PhotonView.Get(this).IsMine)
+            {
+                stream.SendNext(transform.localPosition);
+                stream.SendNext(transform.localRotation);
+            }
         }
         else
         {
-            /*
-            _netPos = (Vector3)stream.ReceiveNext();
-            _netRot = (Quaternion)stream.ReceiveNext();
-            Rb.velocity = (Vector3)stream.ReceiveNext();
-
-            float lag = Mathf.Abs((float)(PhotonNetwork.time - info.timestamp));
-            print(lag);
-            _netPos += (Rb.velocity * lag);
-            if (Vector3.Distance(ship.transform.position, _netPos) > 20.0f) // more or less a replacement for CheckExitScreen function on remote clients
+            if (!PhotonView.Get(this).IsMine)
             {
-                ship.transform.position = _netPos;
+                truePosition = (Vector3)stream.ReceiveNext();
+                trueRotation = (Quaternion)stream.ReceiveNext();
             }
-            */
         }
+    }
+
+    private void Update()
+    {
+        transform.localPosition = Vector3.Lerp(transform.localPosition, truePosition, Time.deltaTime * 5);
+        transform.localRotation = Quaternion.Lerp(transform.localRotation, trueRotation, Time.deltaTime * 5);
     }
 }
