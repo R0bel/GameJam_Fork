@@ -52,4 +52,20 @@ public class BTTasks : MonoBehaviour
         anim.SetFloat("RunSpeed", agent.velocity.magnitude * 2);
         task.Succeed();
     }
+
+    [Task]
+    void PlayPrayAnim()
+    {
+        task = Task.current;
+        anim.SetTrigger("Praying");
+        task.Succeed();
+    }
+
+    [Task]
+    void PlayDeathAnim()
+    {
+        task = Task.current;
+        anim.SetTrigger("IsDead");
+        task.Succeed();
+    }
 }
