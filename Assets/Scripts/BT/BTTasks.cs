@@ -6,7 +6,8 @@ using UnityEngine.AI;
 
 public class BTTasks : MonoBehaviour
 {
-
+    [SerializeField]
+    private Transform[] targets;
     private Animator anim;
     private NavMeshAgent agent;
     private Task task;
@@ -67,5 +68,48 @@ public class BTTasks : MonoBehaviour
         task = Task.current;
         anim.SetTrigger("IsDead");
         task.Succeed();
+    }
+
+    [Task]
+    void NearPlayer(float minDist)
+    {
+        task = Task.current;
+        for (int i = 0; i < targets.Length; i++)
+        {
+            float dist = Vector3.Distance(targets[i].position, transform.position);
+            Debug.Log(dist);
+            if (dist <= minDist)
+            {
+                task.Succeed();
+                break;
+            }
+            else
+            {
+                task.Fail();
+            }
+        }
+
+    }
+
+
+    [Task]
+    void RandomPoint(int range, float minDist)
+    {
+        task = Task.current;
+        for (int i = 0; i < 30; i++)
+        {
+            Vector3 randomPoint = transform.position + Random.insideUnitSphere * range;
+            NavMeshHit hit;
+            if (NavMesh.SamplePosition(randomPoint, out hit, 1.0f, NavMesh.AllAreas))
+            {
+                float dist = Vector3.Distance(hit.position, transform.position);
+                if (dist >= minDist)
+                {
+                    agent.destination = hit.position;
+                    task.Succeed();
+                }
+            }
+        }
+        task.Fail();
     }
 }

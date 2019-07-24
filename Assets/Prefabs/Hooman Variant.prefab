@@ -7,7 +7,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8679478738958716184}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d85fc4c7f12a88349b7a6381dd6f98bb, type: 3}
   m_Name: 
@@ -47,14 +47,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scripts:
-  - {fileID: 4900000, guid: b21db5412c1c9cb4a940e85492191016, type: 3}
+  - {fileID: 4900000, guid: bf060408c9457df4bba99e1359487b91, type: 3}
   autoReset: 1
   tickOn: 0
   sourceInfos:
   - isFoldout: 1
     breakPoints: 
     breakPointStatuses: 
-    collapsedLines: 
+    collapsedLines: 0e0000001300000017000000
     btScript: 
 --- !u!114 &4346404070609979645
 MonoBehaviour:
@@ -68,6 +68,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 740f2098e73e97845bcedc5aaeaa9c8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targets:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &1506137958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95,32 +98,32 @@ PrefabInstance:
     - target: {fileID: 33745028156829557, guid: 0125ac7282822254f9f91b7ccdd166ba,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.144
+      value: 0.791
       objectReference: {fileID: 0}
     - target: {fileID: 33745028156829557, guid: 0125ac7282822254f9f91b7ccdd166ba,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.3953
+      value: 0.396
       objectReference: {fileID: 0}
     - target: {fileID: 33745028156829557, guid: 0125ac7282822254f9f91b7ccdd166ba,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.607
       objectReference: {fileID: 0}
     - target: {fileID: 33745028156829557, guid: 0125ac7282822254f9f91b7ccdd166ba,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 33745028156829557, guid: 0125ac7282822254f9f91b7ccdd166ba,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0.00000037252897
       objectReference: {fileID: 0}
     - target: {fileID: 33745028156829557, guid: 0125ac7282822254f9f91b7ccdd166ba,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 33745028156829557, guid: 0125ac7282822254f9f91b7ccdd166ba,
         type: 3}
@@ -184,7 +187,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6851864596575771939, guid: 0125ac7282822254f9f91b7ccdd166ba, type: 3}
-    - {fileID: 3829672288586023688, guid: 0125ac7282822254f9f91b7ccdd166ba, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 0125ac7282822254f9f91b7ccdd166ba, type: 3}
 --- !u!1 &8679478738958716184 stripped
 GameObject:
