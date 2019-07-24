@@ -21,7 +21,7 @@ public class BTTasks : MonoBehaviour
 
 
     [Task]
-    void ShouldMove()
+    void IsMoving()
     {
         task = Task.current;
         task.debugInfo = agent.remainingDistance.ToString();
@@ -37,10 +37,17 @@ public class BTTasks : MonoBehaviour
     }
 
     [Task]
+    void ShouldMove(bool isMoving)
+    {
+        task = Task.current;
+        anim.SetBool("OnWalk", isMoving);
+        task.Succeed();
+    }
+
+    [Task]
     void PlayRunAnim()
     {
         task = Task.current;
-        anim.SetBool("OnWalk", true);
         anim.SetBool("Running", true);
         anim.SetFloat("RunSpeed", agent.velocity.magnitude * 2);
         task.Succeed();

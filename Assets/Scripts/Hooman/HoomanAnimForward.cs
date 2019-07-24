@@ -1,19 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class HoomanAnimForward : MonoBehaviour
 {
-    private AgentAnimMove parentAgentAnimMove;
+    private Transform parent;
+    private NavMeshAgent agent;
 
     private void Awake()
     {
-        parentAgentAnimMove = transform.parent.GetComponent<AgentAnimMove>();
-        if (parentAgentAnimMove == null) Debug.LogError("Parent has no AgentAnimMove controller attached!");
+        parent = transform.parent.transform;
+        if (parent == null) Debug.LogError("Parent has no AgentAnimMove controller attached!");
+        agent = parent.GetComponent<NavMeshAgent>();
+        // Don’t update position automatically
+        agent.updatePosition = false;
     }
 
     public void OnAnimatorMove()
     {
-        if (parentAgentAnimMove != null) parentAgentAnimMove.OnAnimatorMove();
+        parent.position = agent.nextPosition;
     }
 }
