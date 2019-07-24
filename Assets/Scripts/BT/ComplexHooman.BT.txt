@@ -1,21 +1,24 @@
 tree("Root")
 	fallback
 		while
+			NearPlayer(0.5)
+			tree("AvoidPlayer")
+		while
 			IsMoving()
 			tree("Run")
-		while
-			IsKeyPressed("Space")
-			tree("Pray")
-		while
-			IsKeyPressed("B")
-			tree("Death")
 		ShouldMove(false)
+
+tree("AvoidPlayer")
+	sequence
+		RandomPoint(5,0.5)
+		while
+			IsMoving()
+			tree("Run")
 
 tree("Run")
 	sequence
 		ShouldMove(true)
 		PlayRunAnim()
-
 tree("Pray")
 	sequence
 		PlayPrayAnim()
