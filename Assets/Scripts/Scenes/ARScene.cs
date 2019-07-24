@@ -103,7 +103,7 @@ public class ARScene : SceneMonoBehaviour
     private void OnJoinedRoom(Room _room)
     {
         statusText.text = "Joined room: " + _room.Name;
-        ActivateUIView(UIView.INSIDE_ROOM);
+        // ActivateUIView(UIView.INSIDE_ROOM);
         roomNameText.text = _room.Name;
 
         foreach(Player player in gameManager.Network.RoomPlayers)
@@ -114,31 +114,39 @@ public class ARScene : SceneMonoBehaviour
         gameManager.Events.RoomCustomPropertiesChanged += OnRoomPropertiesChanged;
 
 
+        ActivateUIView(UIView.IN_GAME);
+        if (gameManager.Network.IsMasterClient) currentLevel.SpawnCharacter();
+
     }
 
     private void OnRoomPropertiesChanged(ExitGames.Client.Photon.Hashtable _changedProps)
     {
-        ActivateUIView(UIView.IN_GAME);
-        if (currentLevel != null) currentLevel.SpawnCharacter();
+        /*
+        if (currentLevel != null && !gameManager.Network.IsMasterClient)
+        {
+            ActivateUIView(UIView.IN_GAME);
+            currentLevel.SpawnCharacter();
+        }
+        */
     }
 
     #region ButtonCallbacks
     public void OnCreateRoomBtn()
     {
-        if (roomNameInput.text != string.Empty && playerNameInput.text != string.Empty && gameManager.Network.IsConnectedAndReady)
+        if (playerNameInput.text != string.Empty && gameManager.Network.IsConnectedAndReady)
         {
             gameManager.Network.Nickname = playerNameInput.text;
-            gameManager.Network.CreateRoom(roomNameInput.text);
+            gameManager.Network.CreateRoom("a");
         }
             
     }
 
     public void OnJoinRoomBtn()
     {
-        if (roomNameInput.text != string.Empty && playerNameInput.text != string.Empty && gameManager.Network.IsConnectedAndReady)
+        if (playerNameInput.text != string.Empty && gameManager.Network.IsConnectedAndReady)
         {
             gameManager.Network.Nickname = playerNameInput.text;
-            gameManager.Network.JoinRoom(roomNameInput.text);
+            gameManager.Network.JoinRoom("a");
         }
 
     }
