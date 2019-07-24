@@ -8,7 +8,7 @@ public class CharacterPhotonControl : MonoBehaviourPun, IPunObservable, IPunInst
     private GameManager gameManager;
     private ARLevel currentLevel;
     [SerializeField]
-    private Rigidbody rigid;
+    private Animator animator;
 
     private Vector3 truePosition;
     private Quaternion trueRotation;
@@ -63,7 +63,7 @@ public class CharacterPhotonControl : MonoBehaviourPun, IPunObservable, IPunInst
 
     private void Update()
     {
-        transform.localPosition = Vector3.Lerp(transform.localPosition, truePosition, Time.deltaTime * 5);
+        // transform.localPosition = Vector3.Lerp(transform.localPosition, truePosition, Time.deltaTime * 5);
         transform.localRotation = Quaternion.Lerp(transform.localRotation, trueRotation, Time.deltaTime * 5);
     }
 }
