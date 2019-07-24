@@ -151,7 +151,7 @@ MonoBehaviour:
     SynchronizeType: 2
     Name: InputCrouch
   - Type: 4
-    SynchronizeType: 1
+    SynchronizeType: 2
     Name: Jump
   - Type: 4
     SynchronizeType: 1

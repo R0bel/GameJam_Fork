@@ -7,14 +7,14 @@ public class CharacterPhotonControl : MonoBehaviourPun, IPunObservable, IPunInst
 {
     private GameManager gameManager;
     private ARLevel currentLevel;
-    [SerializeField]
-    private Animator animator;
 
     private Vector3 truePosition;
     private Quaternion trueRotation;
     private Vector3 trueSpeed;
-    private float lastRotation;
-    private float trueAngularSpeed;
+
+    private int positionCheckCounter = 0;
+    [SerializeField]
+    private int positionCheckRate = 100;
 
     private void OnEnable()
     {
@@ -33,7 +33,7 @@ public class CharacterPhotonControl : MonoBehaviourPun, IPunObservable, IPunInst
                 transform.position = currentLevel.transform.position;
                 transform.localScale = new Vector3(1f, 1f, 1f);
             }
-        }        
+        }
     }
 
     /// <summary>
@@ -63,6 +63,18 @@ public class CharacterPhotonControl : MonoBehaviourPun, IPunObservable, IPunInst
 
     private void Update()
     {
+
+        if (positionCheckCounter == 0)
+        {
+            transform.localPosition = Vector3.Lerp(transform.localPosition, truePosition, Time.deltaTime * 5);
+        }
+
+        if (positionCheckCounter > positionCheckRate)
+        {
+            positionCheckCounter = 1;
+            transform.localPosition = Vector3.Lerp(transform.localPosition, truePosition, Time.deltaTime * 5);
+        }
+        positionCheckCounter++;
         // transform.localPosition = Vector3.Lerp(transform.localPosition, truePosition, Time.deltaTime * 5);
         transform.localRotation = Quaternion.Lerp(transform.localRotation, trueRotation, Time.deltaTime * 5);
     }
