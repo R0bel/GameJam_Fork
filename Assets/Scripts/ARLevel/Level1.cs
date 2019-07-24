@@ -18,16 +18,14 @@ public class Level1 : ARLevel
 
         // connect to Photon Networking
         gameManager.Network.ConnectToMasterserver();
-
-        // Character currentChar = Instantiate(character, Vector3.zero, Quaternion.identity, transform);
-        // gameManager.Char.ActiveCharacter = currentChar;
     }
 
-    public override void SpawnCharacter()
+    public override void SpawnCharacter(string _playerModelName)
     {
         if (gameManager.Network.InRoom)
         {
-            GameObject currentChar = PhotonNetwork.Instantiate("CowPlayer", transform.position, Quaternion.identity, 0);
+
+            GameObject currentChar = PhotonNetwork.Instantiate(_playerModelName, transform.position, Quaternion.identity, 0);
             gameManager.Char.ActiveCharacter = currentChar.GetComponent<Character>();
         }
     }

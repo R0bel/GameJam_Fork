@@ -108,6 +108,14 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IManagedBehaviour
         }
     }
 
+    public void JoinOrCreateRoom(string _roomName)
+    {
+        if (!InRoom)
+        {
+            PhotonNetwork.JoinOrCreateRoom(_roomName, roomOptions, TypedLobby.Default);
+        }
+    }    
+
     public void LeaveRoom()
     {
         if (InRoom)

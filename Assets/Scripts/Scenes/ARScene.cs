@@ -29,11 +29,7 @@ public class ARScene : SceneMonoBehaviour
     [SerializeField]
     private InputField playerNameInput;
     [SerializeField]
-    private InputField roomNameInput;
-    [SerializeField]
-    private Button createRoomBtn;
-    [SerializeField]
-    private Button joinRoomBtn;
+    private Button joinCreateRoomBtn;
     [SerializeField]
     private Text statusText;
 
@@ -49,6 +45,7 @@ public class ARScene : SceneMonoBehaviour
     [SerializeField]
     private GameObject inGameView;
 
+    [Header("Player Controls")]
     [Space(10f)]
     [SerializeField]
     private Joystick joystick;
@@ -62,8 +59,7 @@ public class ARScene : SceneMonoBehaviour
         gameManager = _manager;
         activeChar = gameManager.Char.ActiveCharacter;
 
-        createRoomBtn.interactable = false;
-        joinRoomBtn.interactable = false;
+        joinCreateRoomBtn.interactable = false;
 
         gameManager.Events.CharacterChanged += OnCharacterUpdate;
         gameManager.Events.LevelStarted += OnLevelStarted;
@@ -85,9 +81,8 @@ public class ARScene : SceneMonoBehaviour
 
     private void OnConnectedToMasterServer()
     {
-        statusText.text = "Connected to Photon Masterserver";
-        createRoomBtn.interactable = true;
-        joinRoomBtn.interactable = true;
+        statusText.text = "Connected";
+        joinCreateRoomBtn.interactable = true;
     }
 
     private void OnJoinedRoom(Room _room)
@@ -105,40 +100,35 @@ public class ARScene : SceneMonoBehaviour
 
 
         ActivateUIView(UIView.IN_GAME);
-        currentLevel.SpawnCharacter();
+        if (gameManager.Network.IsMasterClient)
+        {
+            if (currentLevel != null) currentLevel.SpawnCharacter("CowPlayer");
+        }
+        else
+        {
+            if (currentLevel != null) currentLevel.SpawnCharacter("PigPlayer");
+        }
 
     }
 
     private void OnRoomPropertiesChanged(ExitGames.Client.Photon.Hashtable _changedProps)
     {
-        /*
-        if (currentLevel != null && !gameManager.Network.IsMasterClient)
-        {
-            ActivateUIView(UIView.IN_GAME);
-            currentLevel.SpawnCharacter();
-        }
-        */
+        
     }
 
     #region ButtonCallbacks
-    public void OnCreateRoomBtn()
+    public void OnJoinCreateBtn()
     {
         if (playerNameInput.text != string.Empty && gameManager.Network.IsConnectedAndReady)
         {
+            // set players nickname
             gameManager.Network.Nickname = playerNameInput.text;
-            gameManager.Network.CreateRoom("a");
-        }
-            
-    }
 
-    public void OnJoinRoomBtn()
-    {
-        if (playerNameInput.text != string.Empty && gameManager.Network.IsConnectedAndReady)
-        {
-            gameManager.Network.Nickname = playerNameInput.text;
-            gameManager.Network.JoinRoom("a");
+            // start new room or join one
+            string roomName = "defaultLevelRoom";
+            if (currentLevel != null) roomName = currentLevel.ImageName;
+            gameManager.Network.JoinOrCreateRoom(roomName);
         }
-
     }
     #endregion
 
@@ -152,7 +142,14 @@ public class ARScene : SceneMonoBehaviour
             // Set room gameStarted property
             PhotonNetwork.CurrentRoom.CustomProperties["GameStarted"] = true;
             ActivateUIView(UIView.IN_GAME);
-            if (currentLevel != null) currentLevel.SpawnCharacter();
+
+            if (gameManager.Network.IsMasterClient)
+            {
+                if (currentLevel != null) currentLevel.SpawnCharacter("CowPlayer");
+            } else
+            {
+                if (currentLevel != null) currentLevel.SpawnCharacter("PigPlayer");
+            }            
         }
     }
 
