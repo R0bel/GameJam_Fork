@@ -1,4 +1,0 @@
-tree("Root")
-	while
-		ShouldMove()
-		Succeed

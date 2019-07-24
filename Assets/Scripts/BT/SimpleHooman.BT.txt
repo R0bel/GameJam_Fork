@@ -1,0 +1,8 @@
+tree("Root")
+	while
+		ShouldMove()
+		tree("Run")
+tree("Run")
+	sequence
+		PlayRunAnim()
+

@@ -14,7 +14,7 @@ public class AgentAnimMove : MonoBehaviour
         // Don’t update position automatically
         agent.updatePosition = false;
     }
-
+    /*
     void Update()
     {
         bool shouldMove = agent.remainingDistance > agent.radius - agent.stoppingDistance;
@@ -25,7 +25,7 @@ public class AgentAnimMove : MonoBehaviour
         anim.SetFloat("RunSpeed", agent.velocity.magnitude * 0.25f);
         // anim.SetFloat("InputMove", agent.velocity.sqrMagnitude);
     }
-
+    */
     public void OnAnimatorMove()
     {
         // Update position to agent position

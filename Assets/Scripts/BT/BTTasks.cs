@@ -6,10 +6,10 @@ using UnityEngine.AI;
 
 public class BTTasks : MonoBehaviour
 {
-    [SerializeField]
-    Animator anim;
-    [SerializeField]
-    NavMeshAgent agent;
+
+    private Animator anim;
+    private NavMeshAgent agent;
+    private Task task;
 
     void Awake()
     {
@@ -23,8 +23,9 @@ public class BTTasks : MonoBehaviour
     [Task]
     void ShouldMove()
     {
-        Task task = Task.current;
-        bool shouldMove = agent.remainingDistance > agent.radius - agent.stoppingDistance;
+        task = Task.current;
+        task.debugInfo = agent.remainingDistance.ToString();
+        bool shouldMove = agent.remainingDistance > agent.stoppingDistance;
         if (shouldMove)
         {
             task.Succeed();
@@ -33,5 +34,15 @@ public class BTTasks : MonoBehaviour
         {
             task.Fail();
         }
+    }
+
+    [Task]
+    void PlayRunAnim()
+    {
+        task = Task.current;
+        anim.SetBool("OnWalk", true);
+        anim.SetBool("Running", true);
+        anim.SetFloat("RunSpeed", agent.velocity.magnitude * 2);
+        task.Succeed();
     }
 }
