@@ -1,0 +1,25 @@
+tree("Root")
+	fallback
+		while
+			IsMoving()
+			tree("Run")
+		while
+			IsKeyPressed("Space")
+			tree("Pray")
+		while
+			IsKeyPressed("B")
+			tree("Death")
+		ShouldMove(false)
+
+tree("Run")
+	sequence
+		ShouldMove(true)
+		PlayRunAnim()
+
+tree("Pray")
+	sequence
+		PlayPrayAnim()
+
+tree("Death")
+	sequence
+		PlayDeathAnim()
