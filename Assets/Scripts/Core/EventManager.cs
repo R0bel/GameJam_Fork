@@ -12,6 +12,7 @@ public class EventManager : MonoBehaviour
     public delegate void ARHandler(ARTrackedImagesChangedEventArgs _eventArgs);
     public delegate void ARLevelHandler(ARLevel _level);
     public delegate void CharacterHandler(Character _char);
+    public delegate void CharacterRegisterHandler(GameObject _character);
 
     public delegate void NetworkHandler();
     public delegate void NetworkDisconnectHandler(DisconnectCause _cause);
@@ -19,7 +20,7 @@ public class EventManager : MonoBehaviour
     public delegate void NetworkPlayerHandler(Player _player);
     public delegate void NetworkPlayerPropertiesHandler(Player _target, ExitGames.Client.Photon.Hashtable _changedProps);
     public delegate void NetworkRoomPropertiesHandler(ExitGames.Client.Photon.Hashtable _changedProps);
-    public delegate void NetworkErrorHandler(short _code, string _msg);
+    public delegate void NetworkErrorHandler(short _code, string _msg);    
 
     // Events
     public event GameStartupHandler StartupFinished;
@@ -28,6 +29,8 @@ public class EventManager : MonoBehaviour
     public event ARLevelHandler LevelStarted;
     public event ARLevelHandler LevelStopped;
     public event CharacterHandler CharacterChanged;
+    public event CharacterRegisterHandler CharacterSpawned;
+    public event CharacterRegisterHandler CharacterDespawned;
 
     public event NetworkHandler ConnectedToMaster;
     public event NetworkRoomHandler CreatedRoom;
@@ -72,6 +75,16 @@ public class EventManager : MonoBehaviour
     public void OnCharacterChanged(Character _char)
     {
         CharacterChanged?.Invoke(_char);
+    }
+
+    public void OnCharacterSpawned(GameObject _char)
+    {
+        CharacterSpawned?.Invoke(_char);
+    }
+
+    public void OnCharacterDespawned(GameObject _char)
+    {
+        CharacterDespawned?.Invoke(_char);
     }
 
     public void OnConnectedToMasterServer()

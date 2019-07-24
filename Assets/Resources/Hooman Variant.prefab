@@ -1,17 +1,54 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &445781215
+--- !u!114 &1506137958
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8679478738958716184}
-  m_Enabled: 0
+  m_GameObject: {fileID: 6458113826711548709}
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d85fc4c7f12a88349b7a6381dd6f98bb, type: 3}
+  m_Script: {fileID: 11500000, guid: 2f23290f73127884cb316193163e3234, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1245715536328196693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6458113826711548709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 7301833665510147231}
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &7301833665510147231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6458113826711548709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
 --- !u!195 &445781216
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -71,18 +108,6 @@ MonoBehaviour:
   targets:
   - {fileID: 0}
   - {fileID: 0}
---- !u!114 &1506137958
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6458113826711548709}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f23290f73127884cb316193163e3234, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &8648126253473833582
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -94,6 +119,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Hooman Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 2977110513991107808, guid: 0125ac7282822254f9f91b7ccdd166ba,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2977110513991107808, guid: 0125ac7282822254f9f91b7ccdd166ba,
+        type: 3}
+      propertyPath: m_Height
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2977110513991107808, guid: 0125ac7282822254f9f91b7ccdd166ba,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2977110513991107808, guid: 0125ac7282822254f9f91b7ccdd166ba,
+        type: 3}
+      propertyPath: m_Center.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 33745028156829557, guid: 0125ac7282822254f9f91b7ccdd166ba,
         type: 3}
@@ -165,28 +210,8 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.04
       objectReference: {fileID: 0}
-    - target: {fileID: 2977110513991107808, guid: 0125ac7282822254f9f91b7ccdd166ba,
-        type: 3}
-      propertyPath: m_Radius
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2977110513991107808, guid: 0125ac7282822254f9f91b7ccdd166ba,
-        type: 3}
-      propertyPath: m_Height
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2977110513991107808, guid: 0125ac7282822254f9f91b7ccdd166ba,
-        type: 3}
-      propertyPath: m_Center.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2977110513991107808, guid: 0125ac7282822254f9f91b7ccdd166ba,
-        type: 3}
-      propertyPath: m_Center.z
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 6851864596575771939, guid: 0125ac7282822254f9f91b7ccdd166ba, type: 3}
+    - {fileID: 3829672288586023688, guid: 0125ac7282822254f9f91b7ccdd166ba, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 0125ac7282822254f9f91b7ccdd166ba, type: 3}
 --- !u!1 &8679478738958716184 stripped
 GameObject:

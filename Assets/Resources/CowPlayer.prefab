@@ -213,11 +213,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cow_T-Pose
       objectReference: {fileID: 0}
-    - target: {fileID: -6057140222963153312, guid: f59540edb3c1d4a41b2b7e9322f29908,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: fc7950c6c0c97ec4e970eaaeb7f7a2ca, type: 2}
     - target: {fileID: -4216859302048453862, guid: f59540edb3c1d4a41b2b7e9322f29908,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -288,6 +283,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.12
       objectReference: {fileID: 0}
+    - target: {fileID: -6057140222963153312, guid: f59540edb3c1d4a41b2b7e9322f29908,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: fc7950c6c0c97ec4e970eaaeb7f7a2ca, type: 2}
     - target: {fileID: -3230837253247803795, guid: f59540edb3c1d4a41b2b7e9322f29908,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -308,16 +308,16 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 86c82329748c25748a22d6ea96abb1dc, type: 2}
-    - target: {fileID: 3230583837702779306, guid: f59540edb3c1d4a41b2b7e9322f29908,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 4558b8d9acd75bf4ea119a61e66eaa08, type: 2}
     - target: {fileID: 9013847151314003330, guid: f59540edb3c1d4a41b2b7e9322f29908,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: d4bd02d9d2360da478a72b790f8c0c10, type: 2}
+    - target: {fileID: 3230583837702779306, guid: f59540edb3c1d4a41b2b7e9322f29908,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4558b8d9acd75bf4ea119a61e66eaa08, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f59540edb3c1d4a41b2b7e9322f29908, type: 3}
 --- !u!1 &2386398159071526667 stripped

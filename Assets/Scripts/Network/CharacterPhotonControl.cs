@@ -34,8 +34,15 @@ public class CharacterPhotonControl : MonoBehaviourPun, IPunObservable, IPunInst
                 transform.parent = currentLevel.transform;
                 transform.position = currentLevel.transform.position;
                 // transform.localScale = new Vector3(1f, 1f, 1f);
+
+                gameManager.Events.OnCharacterSpawned(this.gameObject);
             }
         }
+    }
+
+    private void OnDestroy()
+    {
+        gameManager.Events.OnCharacterDespawned(this.gameObject);
     }
 
     /// <summary>

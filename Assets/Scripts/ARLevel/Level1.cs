@@ -15,6 +15,9 @@ public class Level1 : ARLevel
     protected override void OnLevelStart()
     {
         Debug.Log("Started Level: " + gameObject.name);
+
+
+
     }
 
     protected override void OnLevelStop()
@@ -31,9 +34,18 @@ public class Level1 : ARLevel
     {
         if (gameManager.Network.InRoom)
         {
+            if (gameManager.Network.IsMasterClient)
+            {
+                foreach (GameObject hoomanSpawn in hoomanSpawns)
+                {
+                    GameObject hooman = PhotonNetwork.Instantiate("Hooman Variant", hoomanSpawn.transform.position, hoomanSpawn.transform.rotation, 0);
+                    BTTasks hoomanBehaviour = hooman.GetComponent<BTTasks>();
+                }
+            }            
 
-            GameObject currentChar = PhotonNetwork.Instantiate(_playerModelName, transform.position, Quaternion.identity, 0);
-            gameManager.Char.ActiveCharacter = currentChar.GetComponent<Character>();
+            GameObject currentChar = PhotonNetwork.Instantiate(_playerModelName, playerSpawn.transform.position, playerSpawn.transform.rotation, 0);
+            gameManager.Char.ActiveCharacter = currentChar.GetComponent<Character>();          
+
         }
     }
 }

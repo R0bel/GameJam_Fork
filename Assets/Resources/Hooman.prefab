@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 33745028156829557}
-  - component: {fileID: 6851864596575771939}
   - component: {fileID: 4098552448885447241}
   - component: {fileID: 2977110513991107808}
   m_Layer: 8
@@ -34,33 +33,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6851864596575771939
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 33745028156829558}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2762ab13813f61043b85937a2c3afeae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rootMotion: 1
-  walkSpeed: 1.2
-  runSpeed: 1
-  pushSpeed: 1.4
-  pushDistance: 0.1
-  crouchSpeed: 0.9
-  crouchColliderShrink: 0.5
-  crouchColliderCenterY: 0.7
-  turnSpeed: 6
-  gravity: 10
-  maxVelocityChange: 10
-  jumpHeight: 1
-  canJump: 1
-  canCrouch: 1
-  canRun: 1
 --- !u!54 &4098552448885447241
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -115,11 +87,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hooman_T-Pose
       objectReference: {fileID: 0}
-    - target: {fileID: -6057140222963153312, guid: a9e1bb93daf4b6e4998d136c7598a79e,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: b9798efe2cd4d2f48a3c9548f621d468, type: 2}
     - target: {fileID: -4216859302048453862, guid: a9e1bb93daf4b6e4998d136c7598a79e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -195,6 +162,11 @@ PrefabInstance:
       propertyPath: m_LocalRotation.w
       value: -0.009336595
       objectReference: {fileID: 0}
+    - target: {fileID: -6057140222963153312, guid: a9e1bb93daf4b6e4998d136c7598a79e,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: b9798efe2cd4d2f48a3c9548f621d468, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9e1bb93daf4b6e4998d136c7598a79e, type: 3}
 --- !u!1 &2421675798708064587 stripped

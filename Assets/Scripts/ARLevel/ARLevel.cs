@@ -9,6 +9,11 @@ public class ARLevel : MonoBehaviour
     protected GameManager gameManager;
 
     [SerializeField]
+    protected GameObject playerSpawn;
+    [SerializeField]
+    protected GameObject[] hoomanSpawns; 
+
+    [SerializeField]
     protected string imageName;
 
     public string ImageName

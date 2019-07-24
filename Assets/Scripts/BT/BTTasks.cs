@@ -6,18 +6,41 @@ using UnityEngine.AI;
 
 public class BTTasks : MonoBehaviour
 {
+    private GameManager gameManager;
+
     [SerializeField]
-    private Transform[] targets;
+    private List<Transform> targets;
     private Animator anim;
     private NavMeshAgent agent;
     private Task task;
 
     void Awake()
     {
+        gameManager = GameManager.Instance;
+        targets = new List<Transform>();
         anim = transform.GetComponentInChildren<Animator>();
         agent = GetComponent<NavMeshAgent>();
         // Don’t update position automatically
         agent.updatePosition = false;
+
+        gameManager.Events.CharacterSpawned += OnCharacterSpawned;
+        gameManager.Events.CharacterDespawned += OnCharacterDespawned;
+    }
+
+    private void OnDestroy()
+    {
+        gameManager.Events.CharacterSpawned -= OnCharacterSpawned;
+        gameManager.Events.CharacterDespawned -= OnCharacterDespawned;
+    }
+
+    private void OnCharacterSpawned(GameObject _characterObj)
+    {
+        targets.Add(_characterObj.transform);
+    }
+
+    private void OnCharacterDespawned(GameObject _characterObj)
+    {
+        targets.Remove(_characterObj.transform);
     }
 
 
@@ -74,10 +97,10 @@ public class BTTasks : MonoBehaviour
     void NearPlayer(float minDist)
     {
         task = Task.current;
-        for (int i = 0; i < targets.Length; i++)
+        for (int i = 0; i < targets.Count; i++)
         {
             float dist = Vector3.Distance(targets[i].position, transform.position);
-            Debug.Log(dist);
+            // Debug.Log(dist);
             if (dist <= minDist)
             {
                 task.Succeed();
