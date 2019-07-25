@@ -29,6 +29,9 @@ public class HoomanPhotonControl : MonoBehaviourPun, IPunObservable, IPunInstant
     public void Awake()
     {
         m_PhotonView = GetComponent<PhotonView>();
+        hoomanControl = GetComponent<BTTasks>();
+
+        health = 5;
 
         m_StoredPosition = transform.localPosition;
         m_NetworkPosition = Vector3.zero;
@@ -38,8 +41,7 @@ public class HoomanPhotonControl : MonoBehaviourPun, IPunObservable, IPunInstant
 
     void OnEnable()
     {
-        gameManager = GameManager.Instance;
-        hoomanControl = GetComponent<BTTasks>();
+        gameManager = GameManager.Instance;        
         m_firstTake = true;
     }
 

@@ -241,21 +241,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pig_T-Pose
       objectReference: {fileID: 0}
-    - target: {fileID: -7824283112345425840, guid: f86a33e80bcae2e4abf74f1f359f52de,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: d4bd02d9d2360da478a72b790f8c0c10, type: 2}
-    - target: {fileID: -6931034947198053022, guid: f86a33e80bcae2e4abf74f1f359f52de,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 6fc18f4ccf948d441ba547aa55077507, type: 2}
-    - target: {fileID: -6057140222963153312, guid: f86a33e80bcae2e4abf74f1f359f52de,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: ec3a899c820c21b47a4f207ef669ef5c, type: 2}
     - target: {fileID: -4216859302048453862, guid: f86a33e80bcae2e4abf74f1f359f52de,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -326,6 +311,21 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.12
       objectReference: {fileID: 0}
+    - target: {fileID: -6057140222963153312, guid: f86a33e80bcae2e4abf74f1f359f52de,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: ec3a899c820c21b47a4f207ef669ef5c, type: 2}
+    - target: {fileID: -6931034947198053022, guid: f86a33e80bcae2e4abf74f1f359f52de,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6fc18f4ccf948d441ba547aa55077507, type: 2}
+    - target: {fileID: -7824283112345425840, guid: f86a33e80bcae2e4abf74f1f359f52de,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d4bd02d9d2360da478a72b790f8c0c10, type: 2}
     - target: {fileID: -593484814373112139, guid: f86a33e80bcae2e4abf74f1f359f52de,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
