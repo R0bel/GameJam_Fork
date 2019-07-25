@@ -63,14 +63,7 @@ public class BTTasks : MonoBehaviour
     void AgentOn()
     {
         task = Task.current;
-        if (agent)
-        {
-            task.Succeed();
-        }
-        else
-        {
-            task.Fail();
-        }
+        task.Complete(agent.enabled);
     }
 
     [Task]
