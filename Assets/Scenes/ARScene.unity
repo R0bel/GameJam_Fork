@@ -30667,6 +30667,7 @@ MonoBehaviour:
   infectionSound: {fileID: 8300000, guid: 1e655b259b7d5944284655b33d4f9287, type: 3}
   uiStartSound: {fileID: 8300000, guid: 2417a8163cdc3194a89690f3b84c94e4, type: 3}
   uiSelectSound: {fileID: 8300000, guid: d4f906f64b82f524f968731eecef1ac9, type: 3}
+  backgroundMusic: {fileID: 8300000, guid: 7392f797798d6f84a8bfbafc1c25b676, type: 3}
   networkViewObj: {fileID: 535862859}
   networkCreateRoomViewObj: {fileID: 1642810218}
   joinCreateRoomBtn: {fileID: 394475494}

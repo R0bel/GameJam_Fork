@@ -28,6 +28,8 @@ public class ARScene : SceneMonoBehaviour
     private AudioClip uiStartSound;
     [SerializeField]
     private AudioClip uiSelectSound;
+    [SerializeField]
+    private AudioClip backgroundMusic;
 
     [Header("Network Controls")]
     [SerializeField]
@@ -88,7 +90,8 @@ public class ARScene : SceneMonoBehaviour
         currentLevel = _level;
         pointsText.text = points.ToString();
         ActivateUIView(UIView.CREATE_ROOM);
-        // gameManager.Audio.PlaySingle(uiStartSound);
+        gameManager.Audio.PlayMusic(backgroundMusic, 3f, 1f, true);
+        gameManager.Audio.MusicVolume = -20;
     }
 
     private void OnConnectedToMasterServer()
