@@ -76,12 +76,12 @@ public class BTTasks : MonoBehaviour
 
     public void GotHit(int _damage)
     {
+        if (photonControl.Health > 0)
+        {
+            infectedParticleSystem.Play();
+        }
         if (gameManager.Network.IsMasterClient)
         {
-            if (photonControl.Health > 0)
-            {
-                infectedParticleSystem.Play();
-            }
             photonControl.Health -= _damage;
         }
     }

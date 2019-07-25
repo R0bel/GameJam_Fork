@@ -3,14 +3,11 @@ tree("Root")
 		tree("CheckHealth")
 		while
 			AgentOn()
-			fallback
-				while
-					NearPlayer(0.5)
-					tree("AvoidPlayer")
-				while
-					IsMoving()
-					tree("Run")
-				ShouldMove(false)
+			tree("AvoidPlayer")
+		while
+			IsMoving()
+			tree("Run")
+		ShouldMove(false)
 
 tree("CheckHealth")
 	while
@@ -18,11 +15,13 @@ tree("CheckHealth")
 		tree("Death")
 	
 tree("AvoidPlayer")
-	sequence
-		RandomPoint(5,0.5)
-		while
-			IsMoving()
-			tree("Run")
+	while
+		NearPlayer(0.5)
+		sequence
+			RandomPoint(5,0.5)
+			while
+				IsMoving()
+				tree("Run")
 
 tree("Run")
 	sequence
