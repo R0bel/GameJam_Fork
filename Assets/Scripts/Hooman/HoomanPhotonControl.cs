@@ -118,7 +118,8 @@ public class HoomanPhotonControl : MonoBehaviourPun, IPunObservable, IPunInstant
                 m_firstTake = false;
             }
 
-            this.health = (int)stream.ReceiveNext();
+            int health = (int)stream.ReceiveNext();
+            if (gameManager.Network.IsMasterClient) this.health = health;
         }
     }
 }
