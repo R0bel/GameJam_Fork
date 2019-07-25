@@ -185,7 +185,7 @@ public class ARScene : SceneMonoBehaviour
                 networkViewObj.SetActive(false);
                 networkCreateRoomViewObj.SetActive(false);
                 inGameView.SetActive(true);
-                Screen.orientation = ScreenOrientation.LandscapeLeft;
+                Screen.orientation = ScreenOrientation.AutoRotation;
                 break;
         }
     }
