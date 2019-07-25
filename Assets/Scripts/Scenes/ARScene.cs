@@ -52,6 +52,7 @@ public class ARScene : SceneMonoBehaviour
         activeChar = gameManager.Char.ActiveCharacter;
 
         joinCreateRoomBtn.interactable = false;
+        statusText.color = Color.red;
 
         gameManager.Events.CharacterChanged += OnCharacterUpdate;
         gameManager.Events.LevelStarted += OnLevelStarted;
@@ -75,6 +76,7 @@ public class ARScene : SceneMonoBehaviour
     private void OnConnectedToMasterServer()
     {
         statusText.text = "CONNECTED";
+        statusText.color = Color.green;
         joinCreateRoomBtn.interactable = true;
     }
 
