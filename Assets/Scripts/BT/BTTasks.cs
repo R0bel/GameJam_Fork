@@ -87,16 +87,16 @@ public class BTTasks : MonoBehaviour
         {
             infectedParticleSystem.Play();
             audioSource.clip = hitSound;
-        } else
-        {
-            if (photonView.IsMine) gameManager.Events.OnPointsChanged(1);
+            audioSource.Play();
         }
         if (gameManager.Network.IsMasterClient)
         {
             photonControl.Health -= _damage;
         }
 
-        audioSource.Play();
+        if (photonControl.Health <= 0)
+            if (photonView.IsMine) gameManager.Events.OnPointsChanged(1);
+        
     }
 
 
