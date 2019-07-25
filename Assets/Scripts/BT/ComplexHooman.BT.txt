@@ -5,14 +5,19 @@ tree("Root")
 			AgentOn()
 			tree("AvoidPlayer")
 		while
-			IsMoving()
-			tree("Run")
+			AgentOn()
+			tree("CheckMoving")
 		ShouldMove(false)
 
 tree("CheckHealth")
 	while
 		IsDead()
 		tree("Death")
+
+tree("CheckMoving")
+	while
+		IsMoving()
+		tree("Run")
 	
 tree("AvoidPlayer")
 	while
