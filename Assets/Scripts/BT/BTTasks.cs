@@ -16,6 +16,7 @@ public class BTTasks : MonoBehaviour
     private NavMeshAgent agent;
     private Task task;
     private HoomanPhotonControl photonControl;
+    private PhotonView photonView;
 
 
     void Awake()
@@ -25,6 +26,7 @@ public class BTTasks : MonoBehaviour
         anim = transform.GetComponentInChildren<Animator>();
         agent = GetComponent<NavMeshAgent>();
         photonControl = GetComponent<HoomanPhotonControl>();
+        photonView = GetComponent<PhotonView>();
         // Don’t update position automatically
         agent.updatePosition = false;
 
@@ -69,14 +71,14 @@ public class BTTasks : MonoBehaviour
 
     public void GotHit(int _damage)
     {
-        if (!PhotonView.Get(this).IsMine)
+        if (photonView.IsMine)
         {
-            photonControl.Health -= _damage;
-            Debug.LogWarning(photonControl.Health);
+            photonControl.Health -= _damage;            
         }
 
         if (photonControl.Health <= 0)
         {
+            Debug.LogWarning(photonControl.Health);
             this.gameObject.SetActive(false);
         }
     }
