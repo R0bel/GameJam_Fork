@@ -90,7 +90,6 @@ public class HoomanPhotonControl : MonoBehaviourPun, IPunObservable, IPunInstant
         {
             this.m_NetworkPosition = (Vector3)stream.ReceiveNext();
             this.m_Direction = (Vector3)stream.ReceiveNext();
-            this.health = (int)stream.ReceiveNext();
 
             if (m_firstTake)
             {
@@ -120,6 +119,8 @@ public class HoomanPhotonControl : MonoBehaviourPun, IPunObservable, IPunInstant
             {
                 m_firstTake = false;
             }
+
+            this.health = (int)stream.ReceiveNext();
         }
     }
 }
