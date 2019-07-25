@@ -27,19 +27,11 @@ public class ARScene : SceneMonoBehaviour
 
     [Space(10f)]
     [SerializeField]
-    private InputField playerNameInput;
-    [SerializeField]
     private Button joinCreateRoomBtn;
     [SerializeField]
+    private Button audioToggleBtn;
+    [SerializeField]
     private Text statusText;
-
-    [Space(5f)]
-    [SerializeField]
-    private GameObject networkRoomViewObj;
-    [SerializeField]
-    private Text roomNameText;
-    [SerializeField]
-    private Text playerListText;
 
     [Space(5f)]
     [SerializeField]
@@ -60,6 +52,7 @@ public class ARScene : SceneMonoBehaviour
         activeChar = gameManager.Char.ActiveCharacter;
 
         joinCreateRoomBtn.interactable = false;
+        statusText.color = Color.red;
 
         gameManager.Events.CharacterChanged += OnCharacterUpdate;
         gameManager.Events.LevelStarted += OnLevelStarted;
@@ -82,15 +75,14 @@ public class ARScene : SceneMonoBehaviour
 
     private void OnConnectedToMasterServer()
     {
-        statusText.text = "Connected";
+        statusText.text = "CONNECTED";
+        statusText.color = Color.green;
         joinCreateRoomBtn.interactable = true;
     }
 
     private void OnJoinedRoom(Room _room)
     {
-        statusText.text = "Joined room: " + _room.Name;
         // ActivateUIView(UIView.INSIDE_ROOM);
-        roomNameText.text = _room.Name;
         gameManager.Events.RoomCustomPropertiesChanged += OnRoomPropertiesChanged;
 
 
@@ -119,16 +111,21 @@ public class ARScene : SceneMonoBehaviour
     #region ButtonCallbacks
     public void OnJoinCreateBtn()
     {
-        if (playerNameInput.text != string.Empty && gameManager.Network.IsConnectedAndReady)
+        if (gameManager.Network.IsConnectedAndReady)
         {
             // set players nickname
-            gameManager.Network.Nickname = playerNameInput.text;
+            // gameManager.Network.Nickname = playerNameInput.text;
 
             // start new room or join one
             string roomName = "defaultLevelRoom";
             if (currentLevel != null) roomName = currentLevel.ImageName;
             gameManager.Network.JoinOrCreateRoom(roomName);
         }
+    }
+
+    public void OnToggleAudioBtn()
+    {
+        
     }
     #endregion
 
@@ -164,20 +161,14 @@ public class ARScene : SceneMonoBehaviour
             case UIView.CREATE_ROOM:
                 networkViewObj.SetActive(true);
                 networkCreateRoomViewObj.SetActive(true);
-                networkRoomViewObj.SetActive(false);
                 inGameView.SetActive(false);
-                break;
-            case UIView.INSIDE_ROOM:
-                networkViewObj.SetActive(true);
-                networkCreateRoomViewObj.SetActive(false);
-                networkRoomViewObj.SetActive(true);
-                inGameView.SetActive(false);
+                Screen.orientation = ScreenOrientation.Portrait;
                 break;
             case UIView.IN_GAME:
                 networkViewObj.SetActive(false);
                 networkCreateRoomViewObj.SetActive(false);
-                networkRoomViewObj.SetActive(false);
                 inGameView.SetActive(true);
+                Screen.orientation = ScreenOrientation.LandscapeLeft;
                 break;
         }
     }
