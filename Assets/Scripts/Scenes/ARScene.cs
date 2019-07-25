@@ -40,6 +40,13 @@ public class ARScene : SceneMonoBehaviour
     [Header("Player Controls")]
     [Space(10f)]
     [SerializeField]
+    private Image runBtnImg;
+    [SerializeField]
+    private Sprite runSprite;
+    [SerializeField]
+    private Sprite runSpriteActive;
+    [Space(5f)]
+    [SerializeField]
     private Joystick joystick;
     [SerializeField]
     private float deadPoint;
@@ -175,7 +182,12 @@ public class ARScene : SceneMonoBehaviour
 
     public void OnRunBtnClicked()
     {
-        if (activeChar != null) activeChar.IsRunning = !activeChar.IsRunning;
+        if (activeChar != null)
+        {
+            activeChar.IsRunning = !activeChar.IsRunning;
+            if (activeChar.IsRunning) runBtnImg.sprite = runSpriteActive;
+            else runBtnImg.sprite = runSprite;
+        }
     }
 
     public void OnCrouchTriggered()

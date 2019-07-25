@@ -97,7 +97,7 @@ LightmapSettings:
     m_ShowResolutionOverlay: 1
     m_ExportTrainingData: 0
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -12455,7 +12455,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 41a18cf8f93784f47aabf1c584655df2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3514139535b88844fa769eb6584e7d82, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -15295,6 +15295,9 @@ MonoBehaviour:
   audioToggleBtn: {fileID: 413911606}
   statusText: {fileID: 1332375271}
   inGameView: {fileID: 2103576617}
+  runBtnImg: {fileID: 1623839188}
+  runSprite: {fileID: 21300000, guid: 3514139535b88844fa769eb6584e7d82, type: 3}
+  runSpriteActive: {fileID: 21300000, guid: 1fee1885cb755934a8f8735b119ab3cc, type: 3}
   joystick: {fileID: 375128338}
   deadPoint: 0.1
 --- !u!1001 &4681732214929766772
