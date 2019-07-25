@@ -1,4 +1,5 @@
 ﻿using Panda;
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,6 +26,11 @@ public class BTTasks : MonoBehaviour
 
         gameManager.Events.CharacterSpawned += OnCharacterSpawned;
         gameManager.Events.CharacterDespawned += OnCharacterDespawned;
+    }
+
+    private void OnEnable()
+    {
+        agent.enabled = gameManager.Network.IsMasterClient;
     }
 
     private void OnDestroy()
