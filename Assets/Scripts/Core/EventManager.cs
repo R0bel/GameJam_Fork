@@ -20,7 +20,9 @@ public class EventManager : MonoBehaviour
     public delegate void NetworkPlayerHandler(Player _player);
     public delegate void NetworkPlayerPropertiesHandler(Player _target, ExitGames.Client.Photon.Hashtable _changedProps);
     public delegate void NetworkRoomPropertiesHandler(ExitGames.Client.Photon.Hashtable _changedProps);
-    public delegate void NetworkErrorHandler(short _code, string _msg);    
+    public delegate void NetworkErrorHandler(short _code, string _msg);
+
+    public delegate void PointHandler(int _points);
 
     // Events
     public event GameStartupHandler StartupFinished;
@@ -45,6 +47,7 @@ public class EventManager : MonoBehaviour
     public event NetworkErrorHandler RoomJoinFailed;
     public event NetworkErrorHandler RoomCreateFailed;
 
+    public event PointHandler PointsChanged;
 
     // Trigger
     public void OnGameStartupFinished()
@@ -145,5 +148,10 @@ public class EventManager : MonoBehaviour
     public void OnRoomCreateFailed(short _errorCode, string _msg)
     {
         RoomCreateFailed?.Invoke(_errorCode, _msg);
+    }
+
+    public void OnPointsChanged(int _points)
+    {
+        PointsChanged?.Invoke(_points);
     }
 }

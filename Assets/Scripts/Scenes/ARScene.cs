@@ -40,6 +40,8 @@ public class ARScene : SceneMonoBehaviour
     [Header("Player Controls")]
     [Space(10f)]
     [SerializeField]
+    private Text pointsText;
+    [SerializeField]
     private Image runBtnImg;
     [SerializeField]
     private Sprite runSprite;
@@ -51,12 +53,14 @@ public class ARScene : SceneMonoBehaviour
     [SerializeField]
     private float deadPoint;
     private bool inCrouch = false;
+    private int points = 0; // currently hold in UI TODO: Holded in GameManager or Player (Photon Syn!?)
 
     public override void OnStart(GameManager _manager)
     {
         Debug.Log($"{this.GetType().Name} initialized");
         gameManager = _manager;
         activeChar = gameManager.Char.ActiveCharacter;
+        points = 0;
 
         joinCreateRoomBtn.interactable = false;
         statusText.color = Color.red;
@@ -66,11 +70,13 @@ public class ARScene : SceneMonoBehaviour
         gameManager.Events.ConnectedToMaster += OnConnectedToMasterServer;
         gameManager.Events.JoinedRoom += OnJoinedRoom;
         gameManager.Events.LeftRoom += OnLeftRoom;
+        gameManager.Events.PointsChanged += OnPointsChanged;
     }
 
     private void OnLevelStarted(ARLevel _level)
     {
         currentLevel = _level;
+        pointsText.text = points.ToString();
         if (gameManager.Network.IsConnectedAndReady && gameManager.Network.InRoom)
         {
             ActivateUIView(UIView.INSIDE_ROOM);
@@ -113,6 +119,12 @@ public class ARScene : SceneMonoBehaviour
     private void OnRoomPropertiesChanged(ExitGames.Client.Photon.Hashtable _changedProps)
     {
         
+    }
+
+    private void OnPointsChanged(int _points)
+    {
+        points += _points;
+        pointsText.text = points.ToString();
     }
 
     #region ButtonCallbacks

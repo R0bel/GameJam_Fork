@@ -79,6 +79,9 @@ public class BTTasks : MonoBehaviour
         if (photonControl.Health > 0)
         {
             infectedParticleSystem.Play();
+        } else
+        {
+            if (photonView.IsMine) gameManager.Events.OnPointsChanged(1);
         }
         if (gameManager.Network.IsMasterClient)
         {
