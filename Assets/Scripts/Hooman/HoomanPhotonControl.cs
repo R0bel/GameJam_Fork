@@ -49,7 +49,6 @@ public class HoomanPhotonControl : MonoBehaviourPun, IPunObservable, IPunInstant
             {
                 // scaling character
                 transform.parent = currentLevel.transform;
-                transform.position = currentLevel.transform.position;
             }
         }
     }
