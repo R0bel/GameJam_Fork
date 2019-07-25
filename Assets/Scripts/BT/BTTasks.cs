@@ -27,6 +27,8 @@ public class BTTasks : MonoBehaviour
     [SerializeField]
     private AudioClip hitSound;
 
+    private bool isDead = false;
+
 
     void Awake()
     {
@@ -79,7 +81,7 @@ public class BTTasks : MonoBehaviour
         targets.Remove(_characterObj.transform);
     }
 
-    public void GotHit(int _damage)
+    public void GotHit(int _damage, bool _isOwnChar)
     {
             
 
@@ -94,8 +96,11 @@ public class BTTasks : MonoBehaviour
             photonControl.Health -= _damage;
         }
 
-        if (photonControl.Health <= 0)
-            if (photonView.IsMine) gameManager.Events.OnPointsChanged(1);
+        if (photonControl.Health <= 0 && !isDead)
+        {
+            isDead = true;
+            if (_isOwnChar) gameManager.Events.OnPointsChanged(1);
+        }            
         
     }
 
