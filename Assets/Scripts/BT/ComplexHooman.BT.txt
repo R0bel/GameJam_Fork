@@ -16,11 +16,6 @@ tree("CheckHealth")
 	while
 		IsDead()
 		tree("Death")
-
-tree("GotHit")
-	while
-		GotHit()
-		tree("Death")
 	
 tree("AvoidPlayer")
 	sequence
@@ -41,5 +36,6 @@ tree("Pray")
 tree("Death")
 	sequence
 		PlayDeathAnim()
+		PlayDeathparticles()
 		RealtimeWait(10.0)
 		DestroyHuman()

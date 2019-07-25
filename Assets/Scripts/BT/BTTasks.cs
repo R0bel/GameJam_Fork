@@ -12,13 +12,16 @@ public class BTTasks : MonoBehaviour
 
     [SerializeField]
     private List<Transform> targets;
+    [SerializeField]
+    private ParticleSystem infectedParticleSystem;
+    [SerializeField]
+    private ParticleSystem deathParticleSystem;
+
     private Animator anim;
     private NavMeshAgent agent;
     private Task task;
     private HoomanPhotonControl photonControl;
     private PhotonView photonView;
-
-    private bool gotHit;
 
 
     void Awake()
@@ -31,8 +34,6 @@ public class BTTasks : MonoBehaviour
         photonView = GetComponent<PhotonView>();
         // Don’t update position automatically
         agent.updatePosition = false;
-
-        gotHit = false;
 
         gameManager.Events.CharacterSpawned += OnCharacterSpawned;
         gameManager.Events.CharacterDespawned += OnCharacterDespawned;
@@ -77,8 +78,11 @@ public class BTTasks : MonoBehaviour
     {
         if (gameManager.Network.IsMasterClient)
         {
+            if (photonControl.Health > 0)
+            {
+                infectedParticleSystem.Play();
+            }
             photonControl.Health -= _damage;
-            gotHit = true;
         }
     }
 
@@ -88,14 +92,6 @@ public class BTTasks : MonoBehaviour
     {
         task = Task.current;
         task.Complete(agent.enabled);
-    }
-
-
-    [Task]
-    void GotHit()
-    {
-        task = Task.current;
-        task.Complete(gotHit);
     }
 
     [Task]
@@ -152,14 +148,12 @@ public class BTTasks : MonoBehaviour
     }
 
     [Task]
-    void PlayHitParticle()
+    void PlayDeathparticles()
     {
         task = Task.current;
-        
+        deathParticleSystem.Play();
         task.Succeed();
     }
-
-
 
     [Task]
     void PlayRunAnim()
