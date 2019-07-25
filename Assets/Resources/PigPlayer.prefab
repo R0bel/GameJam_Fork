@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 2977110513991107808}
   - component: {fileID: 2955061782959879695}
   - component: {fileID: 2701710920269741016}
+  - component: {fileID: 7351516081096009376}
+  - component: {fileID: 3841887657997218510}
   m_Layer: 8
   m_Name: PigPlayer
   m_TagString: Untagged
@@ -129,6 +131,32 @@ MonoBehaviour:
   viewIdField: 0
   InstantiationId: 1
   isRuntimeInstantiated: 0
+--- !u!135 &7351516081096009376
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 33745028156829558}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!114 &3841887657997218510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 33745028156829558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78f19fe76d307734d97dcb2485beaaab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
 --- !u!114 &5679291367505067161
 MonoBehaviour:
   m_ObjectHideFlags: 0

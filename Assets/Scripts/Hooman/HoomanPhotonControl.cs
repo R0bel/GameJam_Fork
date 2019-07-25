@@ -10,6 +10,9 @@ public class HoomanPhotonControl : MonoBehaviourPun, IPunObservable, IPunInstant
     private BTTasks hoomanControl;
     private PhotonView view;
 
+    [SerializeField]
+    private int health;
+
     private float m_Distance;
     private float m_Angle;
 
@@ -38,6 +41,12 @@ public class HoomanPhotonControl : MonoBehaviourPun, IPunObservable, IPunInstant
         gameManager = GameManager.Instance;
         hoomanControl = GetComponent<BTTasks>();
         m_firstTake = true;
+    }
+
+    public int Health
+    {
+        get { return health; }
+        set { health = value; }
     }
 
     void IPunInstantiateMagicCallback.OnPhotonInstantiate(PhotonMessageInfo info)
@@ -73,11 +82,13 @@ public class HoomanPhotonControl : MonoBehaviourPun, IPunObservable, IPunInstant
             stream.SendNext(this.m_Direction);
 
             stream.SendNext(transform.localRotation);
+            stream.SendNext(health);
         }
         else
         {
             this.m_NetworkPosition = (Vector3)stream.ReceiveNext();
             this.m_Direction = (Vector3)stream.ReceiveNext();
+            this.health = (int)stream.ReceiveNext();
 
             if (m_firstTake)
             {

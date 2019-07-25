@@ -15,6 +15,8 @@ public class BTTasks : MonoBehaviour
     private Animator anim;
     private NavMeshAgent agent;
     private Task task;
+    private HoomanPhotonControl photonControl;
+
 
     void Awake()
     {
@@ -22,6 +24,7 @@ public class BTTasks : MonoBehaviour
         targets = new List<Transform>();
         anim = transform.GetComponentInChildren<Animator>();
         agent = GetComponent<NavMeshAgent>();
+        photonControl = GetComponent<HoomanPhotonControl>();
         // Don’t update position automatically
         agent.updatePosition = false;
 
@@ -35,16 +38,6 @@ public class BTTasks : MonoBehaviour
     {
         agent.enabled = gameManager.Network.IsMasterClient;
 
-        targets.Clear();
-
-        // Debug.Log(gameManager.Network.RoomPlayers[0].TagObject);
-        /*
-        foreach (Player player in gameManager.Network.RoomPlayers)
-        {
-            Debug.Log(player.TagObject);
-            targets.Add(((GameObject)player.TagObject).transform);
-        }
-        */
     }
 
     private void OnPlayerCountChanged(Player _player)
@@ -73,6 +66,17 @@ public class BTTasks : MonoBehaviour
     {
         targets.Remove(_characterObj.transform);
     }
+
+    public void GotHit(int _damage)
+    {
+        photonControl.Health -= _damage;
+        Debug.LogWarning(photonControl.Health);
+        if (photonControl.Health <= 0)
+        {
+            
+        }
+    }
+
 
     [Task]
     void AgentOn()
