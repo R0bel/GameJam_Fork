@@ -59,12 +59,24 @@ public class BTTasks : MonoBehaviour
         targets.Remove(_characterObj.transform);
     }
 
+    [Task]
+    void AgentOn()
+    {
+        task = Task.current;
+        if (agent)
+        {
+            task.Succeed();
+        }
+        else
+        {
+            task.Fail();
+        }
+    }
 
     [Task]
     void IsMoving()
     {
         task = Task.current;
-        task.debugInfo = agent.remainingDistance.ToString();
         bool shouldMove = agent.remainingDistance > agent.stoppingDistance;
         if (shouldMove)
         {
