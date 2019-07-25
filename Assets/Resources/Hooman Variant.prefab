@@ -262,15 +262,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8679478738958716187}
     m_Modifications:
-    - target: {fileID: 8748813577932144595, guid: cb98d2a09aa11433f9d405ed6fa12eed,
-        type: 3}
-      propertyPath: playOnAwake
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8748813577932144429, guid: cb98d2a09aa11433f9d405ed6fa12eed,
         type: 3}
       propertyPath: m_Name
       value: AngriffInfected
+      objectReference: {fileID: 0}
+    - target: {fileID: 8748813577932144595, guid: cb98d2a09aa11433f9d405ed6fa12eed,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8748813577932144592, guid: cb98d2a09aa11433f9d405ed6fa12eed,
         type: 3}
