@@ -121,7 +121,7 @@ MonoBehaviour:
   - {fileID: 202902777853981071}
   - {fileID: 8440399761638175250}
   viewIdField: 0
-  InstantiationId: 0
+  InstantiationId: 1
   isRuntimeInstantiated: 0
 --- !u!114 &4272452852309400541
 MonoBehaviour:
@@ -385,12 +385,12 @@ PrefabInstance:
     - target: {fileID: 33745028156829557, guid: 0125ac7282822254f9f91b7ccdd166ba,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.791
+      value: 0.3944
       objectReference: {fileID: 0}
     - target: {fileID: 33745028156829557, guid: 0125ac7282822254f9f91b7ccdd166ba,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.396
+      value: 0.0133
       objectReference: {fileID: 0}
     - target: {fileID: 33745028156829557, guid: 0125ac7282822254f9f91b7ccdd166ba,
         type: 3}
@@ -440,20 +440,19 @@ PrefabInstance:
     - target: {fileID: 33745028156829557, guid: 0125ac7282822254f9f91b7ccdd166ba,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.04
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 33745028156829557, guid: 0125ac7282822254f9f91b7ccdd166ba,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.04
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 33745028156829557, guid: 0125ac7282822254f9f91b7ccdd166ba,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.04
+      value: 0.02
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 3829672288586023688, guid: 0125ac7282822254f9f91b7ccdd166ba, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0125ac7282822254f9f91b7ccdd166ba, type: 3}
 --- !u!1 &8679478738958716184 stripped
 GameObject:
