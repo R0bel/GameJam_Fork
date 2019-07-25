@@ -12,6 +12,11 @@ public class BTTasks : MonoBehaviour
 
     [SerializeField]
     private List<Transform> targets;
+    [SerializeField]
+    private ParticleSystem infectedParticleSystem;
+    [SerializeField]
+    private ParticleSystem deathParticleSystem;
+
     private Animator anim;
     private NavMeshAgent agent;
     private Task task;
@@ -71,15 +76,14 @@ public class BTTasks : MonoBehaviour
 
     public void GotHit(int _damage)
     {
+        if (photonControl.Health > 0)
+        {
+            infectedParticleSystem.Play();
+        }
         if (gameManager.Network.IsMasterClient)
         {
             photonControl.Health -= _damage;
-            if (photonControl.Health <= 0)
-            {
-                Debug.LogWarning(photonControl.Health);
-                this.gameObject.SetActive(false);
-            }
-        }        
+        }
     }
 
 
@@ -110,6 +114,44 @@ public class BTTasks : MonoBehaviour
     {
         task = Task.current;
         anim.SetBool("OnWalk", isMoving);
+        task.Succeed();
+    }
+
+    [Task]
+    void IsDead()
+    {
+        task = Task.current;
+        if (gameManager.Network.IsMasterClient)
+        {
+            if (photonControl.Health <= 0)
+            {
+                agent.enabled = false;
+                task.Succeed();
+            }
+            else
+            {
+                task.Fail();
+            }
+        }
+        else
+        {
+            task.Fail();
+        }
+    }
+
+    [Task]
+    void DestroyHuman()
+    {
+        task = Task.current;
+        PhotonNetwork.Destroy(this.gameObject);
+        task.Succeed();
+    }
+
+    [Task]
+    void PlayDeathparticles()
+    {
+        task = Task.current;
+        deathParticleSystem.Play();
         task.Succeed();
     }
 
