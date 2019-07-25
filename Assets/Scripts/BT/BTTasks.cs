@@ -18,6 +18,8 @@ public class BTTasks : MonoBehaviour
     private HoomanPhotonControl photonControl;
     private PhotonView photonView;
 
+    private bool gotHit;
+
 
     void Awake()
     {
@@ -29,6 +31,8 @@ public class BTTasks : MonoBehaviour
         photonView = GetComponent<PhotonView>();
         // Don’t update position automatically
         agent.updatePosition = false;
+
+        gotHit = false;
 
         gameManager.Events.CharacterSpawned += OnCharacterSpawned;
         gameManager.Events.CharacterDespawned += OnCharacterDespawned;
@@ -74,12 +78,8 @@ public class BTTasks : MonoBehaviour
         if (gameManager.Network.IsMasterClient)
         {
             photonControl.Health -= _damage;
-            if (photonControl.Health <= 0)
-            {
-                Debug.LogWarning(photonControl.Health);
-                this.gameObject.SetActive(false);
-            }
-        }        
+            gotHit = true;
+        }
     }
 
 
@@ -88,6 +88,14 @@ public class BTTasks : MonoBehaviour
     {
         task = Task.current;
         task.Complete(agent.enabled);
+    }
+
+
+    [Task]
+    void GotHit()
+    {
+        task = Task.current;
+        task.Complete(gotHit);
     }
 
     [Task]
@@ -112,6 +120,46 @@ public class BTTasks : MonoBehaviour
         anim.SetBool("OnWalk", isMoving);
         task.Succeed();
     }
+
+    [Task]
+    void IsDead()
+    {
+        task = Task.current;
+        if (gameManager.Network.IsMasterClient)
+        {
+            if (photonControl.Health <= 0)
+            {
+                agent.enabled = false;
+                task.Succeed();
+            }
+            else
+            {
+                task.Fail();
+            }
+        }
+        else
+        {
+            task.Fail();
+        }
+    }
+
+    [Task]
+    void DestroyHuman()
+    {
+        task = Task.current;
+        PhotonNetwork.Destroy(this.gameObject);
+        task.Succeed();
+    }
+
+    [Task]
+    void PlayHitParticle()
+    {
+        task = Task.current;
+        
+        task.Succeed();
+    }
+
+
 
     [Task]
     void PlayRunAnim()

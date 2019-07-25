@@ -1,15 +1,27 @@
 tree("Root")
-	while
-		AgentOn()
-		fallback
-			while
-				NearPlayer(0.5)
-				tree("AvoidPlayer")
-			while
-				IsMoving()
-				tree("Run")
-			ShouldMove(false)
+	fallback
+		tree("CheckHealth")
+		while
+			AgentOn()
+			fallback
+				while
+					NearPlayer(0.5)
+					tree("AvoidPlayer")
+				while
+					IsMoving()
+					tree("Run")
+				ShouldMove(false)
 
+tree("CheckHealth")
+	while
+		IsDead()
+		tree("Death")
+
+tree("GotHit")
+	while
+		GotHit()
+		tree("Death")
+	
 tree("AvoidPlayer")
 	sequence
 		RandomPoint(5,0.5)
@@ -21,6 +33,7 @@ tree("Run")
 	sequence
 		ShouldMove(true)
 		PlayRunAnim()
+
 tree("Pray")
 	sequence
 		PlayPrayAnim()
@@ -28,3 +41,5 @@ tree("Pray")
 tree("Death")
 	sequence
 		PlayDeathAnim()
+		RealtimeWait(10.0)
+		DestroyHuman()
