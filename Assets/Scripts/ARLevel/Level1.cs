@@ -38,10 +38,10 @@ public class Level1 : ARLevel
             {
                 foreach (GameObject hoomanSpawn in hoomanSpawns)
                 {
-                    GameObject hooman = PhotonNetwork.Instantiate("Hooman Variant", hoomanSpawn.transform.position, hoomanSpawn.transform.rotation, 0);
+                    GameObject hooman = PhotonNetwork.InstantiateSceneObject("Hooman Variant", hoomanSpawn.transform.position, Quaternion.identity, 0);
                     BTTasks hoomanBehaviour = hooman.GetComponent<BTTasks>();
                 }
-            }            
+            }
 
             GameObject currentChar = PhotonNetwork.Instantiate(_playerModelName, playerSpawn.transform.position, playerSpawn.transform.rotation, 0);
             gameManager.Char.ActiveCharacter = currentChar.GetComponent<Character>();          

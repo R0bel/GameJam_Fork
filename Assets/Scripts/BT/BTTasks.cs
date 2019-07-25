@@ -1,4 +1,6 @@
 ﻿using Panda;
+using Photon.Pun;
+using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,17 +27,46 @@ public class BTTasks : MonoBehaviour
 
         gameManager.Events.CharacterSpawned += OnCharacterSpawned;
         gameManager.Events.CharacterDespawned += OnCharacterDespawned;
+        gameManager.Events.PlayerLeftRoom += OnPlayerCountChanged;
+        gameManager.Events.PlayerJoinedRoom += OnPlayerCountChanged;
+    }
+
+    private void OnEnable()
+    {
+        agent.enabled = gameManager.Network.IsMasterClient;
+
+        targets.Clear();
+
+        // Debug.Log(gameManager.Network.RoomPlayers[0].TagObject);
+        /*
+        foreach (Player player in gameManager.Network.RoomPlayers)
+        {
+            Debug.Log(player.TagObject);
+            targets.Add(((GameObject)player.TagObject).transform);
+        }
+        */
+    }
+
+    private void OnPlayerCountChanged(Player _player)
+    {
+        agent.enabled = gameManager.Network.IsMasterClient;
     }
 
     private void OnDestroy()
     {
         gameManager.Events.CharacterSpawned -= OnCharacterSpawned;
         gameManager.Events.CharacterDespawned -= OnCharacterDespawned;
+        gameManager.Events.PlayerLeftRoom -= OnPlayerCountChanged;
+        gameManager.Events.PlayerJoinedRoom -= OnPlayerCountChanged;
     }
 
     private void OnCharacterSpawned(GameObject _characterObj)
     {
-        targets.Add(_characterObj.transform);
+        targets.Clear();
+        foreach (Player player in gameManager.Network.RoomPlayers)
+        {
+            if (player.TagObject != null) targets.Add(((GameObject)player.TagObject).transform);
+        }
     }
 
     private void OnCharacterDespawned(GameObject _characterObj)
@@ -43,12 +74,17 @@ public class BTTasks : MonoBehaviour
         targets.Remove(_characterObj.transform);
     }
 
+    [Task]
+    void AgentOn()
+    {
+        task = Task.current;
+        task.Complete(agent.enabled);
+    }
 
     [Task]
     void IsMoving()
     {
         task = Task.current;
-        task.debugInfo = agent.remainingDistance.ToString();
         bool shouldMove = agent.remainingDistance > agent.stoppingDistance;
         if (shouldMove)
         {

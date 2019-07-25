@@ -32,8 +32,9 @@ public class CharacterPhotonControl : MonoBehaviourPun, IPunObservable, IPunInst
             {
                 // scaling character
                 transform.parent = currentLevel.transform;
-                transform.position = currentLevel.transform.position;
                 // transform.localScale = new Vector3(1f, 1f, 1f);
+
+                info.Sender.TagObject = this.gameObject;
 
                 gameManager.Events.OnCharacterSpawned(this.gameObject);
             }
