@@ -42,6 +42,7 @@ public class ARScene : SceneMonoBehaviour
     private Button joinCreateRoomBtn;
     [SerializeField]
     private Button audioToggleBtn;
+    private bool audioEnabled = true;
     [SerializeField]
     private Text statusText;
 
@@ -159,6 +160,10 @@ public class ARScene : SceneMonoBehaviour
     {
         // play game start audio
         gameManager.Audio.PlaySingle(uiSelectSound);
+
+        audioEnabled = !audioEnabled;
+        if (audioEnabled) gameManager.Audio.MasterVolume = 0f;
+        else gameManager.Audio.MasterVolume = -80f;
     }
     #endregion
 
