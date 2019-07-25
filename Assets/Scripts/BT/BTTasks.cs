@@ -34,6 +34,17 @@ public class BTTasks : MonoBehaviour
     private void OnEnable()
     {
         agent.enabled = gameManager.Network.IsMasterClient;
+
+        targets.Clear();
+
+        // Debug.Log(gameManager.Network.RoomPlayers[0].TagObject);
+        /*
+        foreach (Player player in gameManager.Network.RoomPlayers)
+        {
+            Debug.Log(player.TagObject);
+            targets.Add(((GameObject)player.TagObject).transform);
+        }
+        */
     }
 
     private void OnPlayerCountChanged(Player _player)
@@ -51,7 +62,11 @@ public class BTTasks : MonoBehaviour
 
     private void OnCharacterSpawned(GameObject _characterObj)
     {
-        targets.Add(_characterObj.transform);
+        targets.Clear();
+        foreach (Player player in gameManager.Network.RoomPlayers)
+        {
+            if (player.TagObject != null) targets.Add(((GameObject)player.TagObject).transform);
+        }
     }
 
     private void OnCharacterDespawned(GameObject _characterObj)

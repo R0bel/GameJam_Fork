@@ -34,8 +34,9 @@ public class CharacterPhotonControl : MonoBehaviourPun, IPunObservable, IPunInst
                 transform.parent = currentLevel.transform;
                 // transform.localScale = new Vector3(1f, 1f, 1f);
 
+                info.Sender.TagObject = this.gameObject;
+
                 gameManager.Events.OnCharacterSpawned(this.gameObject);
-                Debug.Log("Player instantiated: " + this.gameObject.name);
             }
         }
     }
