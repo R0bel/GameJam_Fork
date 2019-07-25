@@ -32,7 +32,7 @@ public class ARLevel : MonoBehaviour
             // trigger level start event
             gameManager.Events.OnARLevelStarted(this);
 
-            if (!gameManager.Network.IsConnectedAndReady)
+            if (!gameManager.Network.IsConnected)
                 gameManager.Network.ConnectToMasterServer();
             OnLevelStart();
         }        
