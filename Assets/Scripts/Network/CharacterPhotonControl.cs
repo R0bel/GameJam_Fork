@@ -89,7 +89,7 @@ public class CharacterPhotonControl : MonoBehaviourPun, IPunObservable, IPunInst
         // transform.localPosition = Vector3.Lerp(transform.localPosition, truePosition, Time.deltaTime * 5);
         if (!IsNaN(trueRotation) && !IsNaN(transform.localRotation) && character != null)
         {
-            transform.localRotation = Quaternion.Lerp(transform.localRotation, trueRotation, Time.deltaTime * character.TurnSpeed);
+            transform.localRotation = Quaternion.Lerp(transform.localRotation, trueRotation, Time.deltaTime * 1);
         }        
     }
 
