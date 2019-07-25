@@ -69,11 +69,15 @@ public class BTTasks : MonoBehaviour
 
     public void GotHit(int _damage)
     {
-        photonControl.Health -= _damage;
-        Debug.LogWarning(photonControl.Health);
+        if (!PhotonView.Get(this).IsMine)
+        {
+            photonControl.Health -= _damage;
+            Debug.LogWarning(photonControl.Health);
+        }
+
         if (photonControl.Health <= 0)
         {
-            
+            this.gameObject.SetActive(false);
         }
     }
 
