@@ -23,6 +23,10 @@ public class BTTasks : MonoBehaviour
     private HoomanPhotonControl photonControl;
     private PhotonView photonView;
 
+    private AudioSource audioSource;
+    [SerializeField]
+    private AudioClip hitSound;
+
 
     void Awake()
     {
@@ -32,6 +36,7 @@ public class BTTasks : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         photonControl = GetComponent<HoomanPhotonControl>();
         photonView = GetComponent<PhotonView>();
+        audioSource = GetComponent<AudioSource>();
         // Don’t update position automatically
         agent.updatePosition = false;
 
@@ -76,9 +81,12 @@ public class BTTasks : MonoBehaviour
 
     public void GotHit(int _damage)
     {
+            
+
         if (photonControl.Health > 0)
         {
             infectedParticleSystem.Play();
+            audioSource.clip = hitSound;
         } else
         {
             if (photonView.IsMine) gameManager.Events.OnPointsChanged(1);
@@ -87,6 +95,8 @@ public class BTTasks : MonoBehaviour
         {
             photonControl.Health -= _damage;
         }
+
+        audioSource.Play();
     }
 
 

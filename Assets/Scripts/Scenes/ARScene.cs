@@ -19,6 +19,16 @@ public class ARScene : SceneMonoBehaviour
     private Character activeChar;
     private ARLevel currentLevel;
 
+    [Header("Audio")]
+    [SerializeField]
+    private AudioClip gameStartSound;
+    [SerializeField]
+    private AudioClip infectionSound;
+    [SerializeField]
+    private AudioClip uiStartSound;
+    [SerializeField]
+    private AudioClip uiSelectSound;
+
     [Header("Network Controls")]
     [SerializeField]
     private GameObject networkViewObj;
@@ -77,13 +87,8 @@ public class ARScene : SceneMonoBehaviour
     {
         currentLevel = _level;
         pointsText.text = points.ToString();
-        if (gameManager.Network.IsConnectedAndReady && gameManager.Network.InRoom)
-        {
-            ActivateUIView(UIView.INSIDE_ROOM);
-        } else
-        {
-            ActivateUIView(UIView.CREATE_ROOM);
-        }
+        ActivateUIView(UIView.CREATE_ROOM);
+        // gameManager.Audio.PlaySingle(uiStartSound);
     }
 
     private void OnConnectedToMasterServer()
@@ -98,7 +103,9 @@ public class ARScene : SceneMonoBehaviour
         // ActivateUIView(UIView.INSIDE_ROOM);
         gameManager.Events.RoomCustomPropertiesChanged += OnRoomPropertiesChanged;
 
-
+        // play game start audio
+        gameManager.Audio.PlaySingle(gameStartSound);
+        
         ActivateUIView(UIView.IN_GAME);
         if (gameManager.Network.IsMasterClient)
         {
@@ -123,6 +130,7 @@ public class ARScene : SceneMonoBehaviour
 
     private void OnPointsChanged(int _points)
     {
+        gameManager.Audio.PlaySingle(infectionSound);
         points += _points;
         pointsText.text = points.ToString();
     }
@@ -130,6 +138,8 @@ public class ARScene : SceneMonoBehaviour
     #region ButtonCallbacks
     public void OnJoinCreateBtn()
     {
+        // play game start audio
+        gameManager.Audio.PlaySingle(uiSelectSound);
         if (gameManager.Network.IsConnectedAndReady)
         {
             // set players nickname
@@ -144,30 +154,10 @@ public class ARScene : SceneMonoBehaviour
 
     public void OnToggleAudioBtn()
     {
-        
+        // play game start audio
+        gameManager.Audio.PlaySingle(uiSelectSound);
     }
     #endregion
-
-    public void StartGame()
-    {
-        if (gameManager.Network.InRoom
-            && gameManager.Network.IsMasterClient
-            // && gameManager.Network.RoomPlayers.Length == PhotonNetwork.CurrentRoom.MaxPlayers
-            )
-        {
-            // Set room gameStarted property
-            // PhotonNetwork.CurrentRoom.CustomProperties["GameStarted"] = true;
-            ActivateUIView(UIView.IN_GAME);
-
-            if (gameManager.Network.IsMasterClient)
-            {
-                if (currentLevel != null) currentLevel.SpawnCharacter("CowPlayer");
-            } else
-            {
-                if (currentLevel != null) currentLevel.SpawnCharacter("PigPlayer");
-            }            
-        }
-    }
 
     /// <summary>
     /// Activate UI View
@@ -196,6 +186,7 @@ public class ARScene : SceneMonoBehaviour
     {
         if (activeChar != null)
         {
+            gameManager.Audio.PlaySingle(uiSelectSound);
             activeChar.IsRunning = !activeChar.IsRunning;
             if (activeChar.IsRunning) runBtnImg.sprite = runSpriteActive;
             else runBtnImg.sprite = runSprite;

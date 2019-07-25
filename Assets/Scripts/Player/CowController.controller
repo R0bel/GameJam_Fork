@@ -513,9 +513,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e8513926758bef4e9fb6fdf306eec23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sound: {fileID: 8300000, guid: 4546ba427f40f1744991914127f00bfc, type: 3}
+  sound: {fileID: 8300000, guid: a9223af113dd9964cb8dd53e2748323a, type: 3}
   pitch: 1
   volume: 0.3
+  loop: 0
 --- !u!1101 &-5345867535920179195
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -1138,6 +1139,7 @@ MonoBehaviour:
   sound: {fileID: 0}
   pitch: 0
   volume: 0
+  loop: 0
 --- !u!1102 &-464664361695482974
 AnimatorState:
   serializedVersion: 5
