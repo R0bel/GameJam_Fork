@@ -1,5 +1,6 @@
 ﻿using Panda;
 using Photon.Pun;
+using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,9 +27,16 @@ public class BTTasks : MonoBehaviour
 
         gameManager.Events.CharacterSpawned += OnCharacterSpawned;
         gameManager.Events.CharacterDespawned += OnCharacterDespawned;
+        gameManager.Events.PlayerLeftRoom += OnPlayerCountChanged;
+        gameManager.Events.PlayerJoinedRoom += OnPlayerCountChanged;
     }
 
     private void OnEnable()
+    {
+        agent.enabled = gameManager.Network.IsMasterClient;
+    }
+
+    private void OnPlayerCountChanged(Player _player)
     {
         agent.enabled = gameManager.Network.IsMasterClient;
     }
@@ -37,6 +45,8 @@ public class BTTasks : MonoBehaviour
     {
         gameManager.Events.CharacterSpawned -= OnCharacterSpawned;
         gameManager.Events.CharacterDespawned -= OnCharacterDespawned;
+        gameManager.Events.PlayerLeftRoom -= OnPlayerCountChanged;
+        gameManager.Events.PlayerJoinedRoom -= OnPlayerCountChanged;
     }
 
     private void OnCharacterSpawned(GameObject _characterObj)
