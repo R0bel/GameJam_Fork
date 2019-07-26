@@ -1,0 +1,11 @@
+tree("Root")
+	fallback
+		while
+			IsMoving()
+			tree("Run")
+		ShouldMove(false)
+tree("Run")
+	sequence
+		ShouldMove(true)
+		PlayRunAnim()
+

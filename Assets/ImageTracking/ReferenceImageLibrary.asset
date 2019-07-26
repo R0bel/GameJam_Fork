@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 848409ee8ba454f42a5ddff137688a27, type: 3}
+  m_Name: ReferenceImageLibrary
+  m_EditorClassIdentifier: 
+  m_GuidLow: 5438900029218683827
+  m_GuidHigh: 11338665651040755373
+  m_Images:
+  - m_SerializedGuid:
+      m_GuidLow: 5388262505811792391
+      m_GuidHigh: 13205211901275525042
+    m_SerializedTextureGuid:
+      m_GuidLow: 9008482086095510724
+      m_GuidHigh: 11323049664082095257
+    m_Size: {x: 0.054116357, y: 0.085}
+    m_SpecifySize: 1
+    m_Name: FurtwangenBack2
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 4864227074399502541
+      m_GuidHigh: 10972752515118502542
+    m_SerializedTextureGuid:
+      m_GuidLow: 14052562397999061791
+      m_GuidHigh: 18066332929718074616
+    m_Size: {x: 0.085, y: 0.05403195}
+    m_SpecifySize: 1
+    m_Name: FurtwangenFront1
+    m_Texture: {fileID: 0}
