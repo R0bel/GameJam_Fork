@@ -29,8 +29,6 @@ MonoBehaviour:
   EnableSupportLogger: 0
   RunInBackground: 1
   RpcList:
-  - ChatMessage
-  - UpdatePlayerPosition
   - DestroySpaceship
   - Fire
   - RespawnSpaceship
